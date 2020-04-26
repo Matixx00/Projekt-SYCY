@@ -1,38 +1,41 @@
+from ctypes import *
+
+
 def encrypt(v1, v2, k):
-    y = v1
-    z = v2
-    sum = 0
+    y = c_uint32(v1)
+    z = c_uint32(v2)
+    sum = c_uint32(0)
     delta = 0x9e3779b9
     n = 32
     w = [0, 0]
 
     while n > 0:
-        sum += delta
-        y += (((z << 4)) + k[0]) ^ ((z + sum)) ^ (((z >> 5)) + k[1])
-        z += (((y << 4)) + k[2]) ^ ((y + sum)) ^ (((y >> 5)) + k[3])
+        sum.value += delta
+        y.value += (z.value << 4) + k[0] ^ z.value + sum.value ^ (z.value >> 5) + k[1]
+        z.value += (y.value << 4) + k[2] ^ y.value + sum.value ^ (y.value >> 5) + k[3]
         n -= 1
 
-    w[0] = y % 4294967296
-    w[1] = z % 4294967296
+    w[0] = y.value
+    w[1] = z.value
     return w
 
 
 def decrypt(v1, v2, k):
-    y = v1
-    z = v2
-    sum = 0xc6ef3720
+    y = c_uint32(v1)
+    z = c_uint32(v2)
+    sum = c_uint32(0xc6ef3720)
     delta = 0x9e3779b9
     n = 32
     w = [0, 0]
 
     while n > 0:
-        z -= ((y << 4) + k[2]) ^ (y + sum) ^ ((y >> 5) + k[3])
-        y -= ((z << 4) + k[0]) ^ (z + sum) ^ ((z >> 5) + k[1])
-        sum -= delta
+        z.value -= (y.value << 4) + k[2] ^ y.value + sum.value ^ (y.value >> 5) + k[3]
+        y.value -= (z.value << 4) + k[0] ^ z.value + sum.value ^ (z.value >> 5) + k[1]
+        sum.value -= delta
         n -= 1
 
-    w[0] = y % 4294967296
-    w[1] = z % 4294967296
+    w[0] = y.value
+    w[1] = z.value
     return w
 
 
@@ -56,6 +59,7 @@ def read(input, output, key, mode):
                 else:
                     flag = True
                     v1 = 0
+                print(bin(v1))
 
                 v2 = infile.read(4).hex()
                 if v2 != '':
@@ -74,14 +78,14 @@ def read(input, output, key, mode):
 
 
 if __name__ == "__main__":
-    # read("random_pdf.pdf", "encrypted.pdf", "hulk is the best", "encrypt")
+    read("random_pdf.pdf", "encrypted.pdf", "hulk is the best", "encrypt")
     # read("encrypted.pdf", "decrypted.pdf", "hulk is the best", "decrypt")
 
-    v1 = 1385482522
-    v2 = 639876499
-    print(bin(v2))
-    key = extract_key("hulk is the best")
-    w = encrypt(v1, v2, key)
-    print(bin(w[0]))
-    d = decrypt(w[0], w[1], key)
-    print(d)
+    # v1 = 13854825223
+    # v2 = 6398764994
+    # print(bin(v2))
+    # key = extract_key("hulk is the best")
+    # w = encrypt(v1, v2, key)
+    # print(bin(w[0]))
+    # d = decrypt(w[0], w[1], key)
+    # print(d)
