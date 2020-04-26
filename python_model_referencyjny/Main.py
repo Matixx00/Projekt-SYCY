@@ -1,15 +1,9 @@
+import sys
 
 
-def encipher(v, key):
-    y = ord(v[0]) + ord(v[1]) + ord(v[2]) + ord(v[3])
-    z = ord(v[4]) + ord(v[5]) + ord(v[6]) + ord(v[7])
-    k = []
-    k.extend([
-        ord(key[0]) + ord(key[1]) + ord(key[2]) + ord(key[3]),
-        ord(key[4]) + ord(key[5]) + ord(key[6]) + ord(key[7]),
-        ord(key[8]) + ord(key[9]) + ord(key[10]) + ord(key[11]),
-        ord(key[12]) + ord(key[13]) + ord(key[14]) + ord(key[15])
-    ])
+def encrypt(v1, v2, k):
+    y = v1
+    z = v2
     sum = 0
     delta = 0x9e3779b9
     n = 32
@@ -26,16 +20,9 @@ def encipher(v, key):
     return w
 
 
-def decipher(v, key):
-    y = v[0]
-    z = v[1]
-    k = []
-    k.extend([
-        ord(key[0]) + ord(key[1]) + ord(key[2]) + ord(key[3]),
-        ord(key[4]) + ord(key[5]) + ord(key[6]) + ord(key[7]),
-        ord(key[8]) + ord(key[9]) + ord(key[10]) + ord(key[11]),
-        ord(key[12]) + ord(key[13]) + ord(key[14]) + ord(key[15])
-    ])
+def decrypt(v1, v2, k):
+    y = v1
+    z = v2
     sum = 0xc6ef3720
     delta = 0x9e3779b9
     n = 32
@@ -52,12 +39,43 @@ def decipher(v, key):
     return w
 
 
+def extract_key(key):
+    endkey = [0, 0, 0, 0]
+    for i in range(0, 4):
+        for j in range(0, 4):
+            endkey[i] += ord(key[j + (4 * i)]) << 8 * (3 - j)
+    return endkey
+
+
+def read(input, output, key, mode):
+    endkey = extract_key(key)
+    flag = False
+    with open(input, 'rb') as infile:
+        with open(output, 'wb') as outfile:
+            while True:
+                v1 = infile.read(32).hex()
+                if v1 != '':
+                    v1 = int(v1, 16)
+                else:
+                    flag = True
+                    v1 = 0
+
+                v2 = infile.read(32).hex()
+                if v2 != '':
+                    v2 = int(v2, 16)
+                else:
+                    v2 = 0
+                if flag:
+                    break
+                if mode == "encrypt":
+                    w = encrypt(v1, v2, endkey)
+                elif mode == "decrypt":
+                    w = decrypt(v1, v2, endkey)
+
+                outfile.write(w[0].to_bytes(length=int(w[0].bit_length() / 8) + 1, byteorder='big'))
+                outfile.write(w[1].to_bytes(length=int(w[1].bit_length() / 8) + 1, byteorder='big'))
+
+
 if __name__ == "__main__":
-    key = "hulk is the awesom"
-    text = "Agnieszk"
-    encrypted = encipher(text, key)
-    print(encrypted)
-
-    decrypted = decipher(encrypted, key)
-
-    print(decrypted)
+    # read("random_pdf.pdf", "encrypted.pdf", "hulk is the best", "encrypt")
+    read("encrypted.pdf", "decrypted.pdf", "hulk is the best", "decrypt")
