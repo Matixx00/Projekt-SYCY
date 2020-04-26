@@ -1,6 +1,3 @@
-import sys
-
-
 def encrypt(v1, v2, k):
     y = v1
     z = v2
@@ -11,12 +8,12 @@ def encrypt(v1, v2, k):
 
     while n > 0:
         sum += delta
-        y += (z << 4) + k[0] ^ z + sum ^ (z >> 5) + k[1]
-        z += (y << 4) + k[2] ^ y + sum ^ (y >> 5) + k[3]
+        y += (((z << 4)) + k[0]) ^ ((z + sum)) ^ (((z >> 5)) + k[1])
+        z += (((y << 4)) + k[2]) ^ ((y + sum)) ^ (((y >> 5)) + k[3])
         n -= 1
 
-    w[0] = y
-    w[1] = z
+    w[0] = y % 4294967296
+    w[1] = z % 4294967296
     return w
 
 
@@ -29,13 +26,13 @@ def decrypt(v1, v2, k):
     w = [0, 0]
 
     while n > 0:
-        z -= (y << 4) + k[2] ^ y + sum ^ (y >> 5) + k[3]
-        y -= (z << 4) + k[0] ^ z + sum ^ (z >> 5) + k[1]
+        z -= ((y << 4) + k[2]) ^ (y + sum) ^ ((y >> 5) + k[3])
+        y -= ((z << 4) + k[0]) ^ (z + sum) ^ ((z >> 5) + k[1])
         sum -= delta
         n -= 1
 
-    w[0] = y
-    w[1] = z
+    w[0] = y % 4294967296
+    w[1] = z % 4294967296
     return w
 
 
@@ -53,14 +50,14 @@ def read(input, output, key, mode):
     with open(input, 'rb') as infile:
         with open(output, 'wb') as outfile:
             while True:
-                v1 = infile.read(32).hex()
+                v1 = infile.read(4).hex()
                 if v1 != '':
                     v1 = int(v1, 16)
                 else:
                     flag = True
                     v1 = 0
 
-                v2 = infile.read(32).hex()
+                v2 = infile.read(4).hex()
                 if v2 != '':
                     v2 = int(v2, 16)
                 else:
@@ -78,4 +75,13 @@ def read(input, output, key, mode):
 
 if __name__ == "__main__":
     # read("random_pdf.pdf", "encrypted.pdf", "hulk is the best", "encrypt")
-    read("encrypted.pdf", "decrypted.pdf", "hulk is the best", "decrypt")
+    # read("encrypted.pdf", "decrypted.pdf", "hulk is the best", "decrypt")
+
+    v1 = 1385482522
+    v2 = 639876499
+    print(bin(v2))
+    key = extract_key("hulk is the best")
+    w = encrypt(v1, v2, key)
+    print(bin(w[0]))
+    d = decrypt(w[0], w[1], key)
+    print(d)
