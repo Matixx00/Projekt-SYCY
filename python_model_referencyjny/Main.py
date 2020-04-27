@@ -59,7 +59,6 @@ def read(input, output, key, mode):
                 else:
                     flag = True
                     v1 = 0
-                print(bin(v1))
 
                 v2 = infile.read(4).hex()
                 if v2 != '':
@@ -78,6 +77,30 @@ def read(input, output, key, mode):
 
 
 if __name__ == "__main__":
+    # =============================================================================================
+    # How to use?
+    # Świry nie będę po angielsku pisał.
+    # Może zacznijmy od kolejnych funkcji:
+    # encrypt() - funkcja do szyfrowania wg schematu działania algorytmu TEA
+    # przyjmuje: v1 - pierwsze 32 bity, v2 - drugie 32 bity, k - 128 bitowy klucz
+    # zwraca tablicę dwuelementową 32 bitowych zaszyfrowanych bloków
+    #
+    # decrypt() - funkcja do odszyfrowywania wg schematu działania algorytmu TEA
+    # podobnie jak w encrypt: v1 - pierwsze 32 bity, v2 - drugie 32 bity, k - 128 bitowy klucz
+    # zwraca dwuelementową tablicę 32 bitowych odszyfrowanych bloków
+    #
+    # extract_key() - funkcja do zamiany klucza w postaci tekstowej do liczbowej
+    # przyjmuje klucz w formie tekstu
+    # zwraca klucz z pierwszych 16 znaków tekstu w formie 128 bitowej liczby
+    #
+    # read() - funkcja do odczytywania i zapisywania do pliku
+    # input - nazwa pliku z którego chcemy odczytywać dane
+    # output - nazwa pliku do którego chcemy zapisywać dane
+    # key - klucz w formie tekstu, którym szyfrujemy/odszyfrowujemy
+    # mode - przyjmuje "encrypt" - gdy chcemy zaszyfrować lub "decrypt" - aby odszyfrować
+    # poniżej znajdują się przykładowe sposoby użycia programu.
+    # =============================================================================================
+
     read("random_pdf.pdf", "encrypted.pdf", "hulk is the best", "encrypt")
     # read("encrypted.pdf", "decrypted.pdf", "hulk is the best", "decrypt")
 
