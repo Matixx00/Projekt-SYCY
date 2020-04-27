@@ -98,6 +98,12 @@ if __name__ == "__main__":
     # output - nazwa pliku do którego chcemy zapisywać dane
     # key - klucz w formie tekstu, którym szyfrujemy/odszyfrowujemy
     # mode - przyjmuje "encrypt" - gdy chcemy zaszyfrować lub "decrypt" - aby odszyfrować
+    #
+    # UWAGA: program ma problem z szyfrowaniem plików ze względu na budowę języka Python,
+    # który "obcina" początkowe wartości bloku bitów jeśli są zerami, co przekłada się
+    # na błędne szyfrowanie/deszyfrowanie
+    # (fukcje encrypt() oraz decrypt() otrzymują <32bity do obliczania)
+    # 
     # poniżej znajdują się przykładowe sposoby użycia programu.
     # =============================================================================================
 
