@@ -107,8 +107,8 @@ if __name__ == "__main__":
     # poniżej znajdują się przykładowe sposoby użycia programu.
     # =============================================================================================
 
-    read("random_pdf.pdf", "encrypted.pdf", "hulk is the best", "encrypt")
-    # read("encrypted.pdf", "decrypted.pdf", "hulk is the best", "decrypt")
+    read("random_pdf.pdf", "encrypted.pdf", "Hulk is the best", "encrypt")
+    # read("encrypted.pdf", "decrypted.pdf", "Hulk is the best", "decrypt")
 
     # v1 = 13854825223
     # v2 = 6398764994
