@@ -72,7 +72,6 @@ def read(input, output, key, mode):
                 elif mode == "decrypt":
                     w = decrypt(v1, v2, endkey)
 
-                print(w[0])
                 outfile.write(w[0].to_bytes(length=4, byteorder='big'))
                 outfile.write(w[1].to_bytes(length=4, byteorder='big'))
 
@@ -126,7 +125,6 @@ if __name__ == "__main__":
     # read("random_pdf.pdf", "encrypted.pdf", "Hulk is the best", "encrypt")
     # read("encrypted.pdf", "decrypted.pdf", "Hulk is the best", "decrypt")
 
-
     # v1 = 13854825223
     # v2 = 6398764994
     # print(bin(v2))
@@ -137,22 +135,28 @@ if __name__ == "__main__":
     # d = decrypt(w[0], w[1], key)
     # print(d)
 
-    print(break_key("encrypted/wersja1.1_zaszyfrowana(1).pdf", "klucze.txt"))
-    print(break_key("encrypted/wersja1.1_zaszyfrowana.pdf", "klucze.txt"))
-    print(break_key("encrypted/wersja1.2_zaszyfrowana(1).pdf", "klucze.txt"))
-    print(break_key("encrypted/wersja1.2_zaszyfrowana(2).pdf", "klucze.txt"))
-    print(break_key("encrypted/wersja1.3_zaszyfrowana(1).pdf", "klucze.txt"))
-    print(break_key("encrypted/wersja1.3_zaszyfrowana(2).pdf", "klucze.txt"))
-    print(break_key("encrypted/wersja1.4_zaszyfrowana(1).pdf", "klucze.txt"))
-    print(break_key("encrypted/wersja1.4_zaszyfrowana(2).pdf", "klucze.txt"))
-    print(break_key("encrypted/wersja1.5_zaszyfrowana(1).pdf", "klucze.txt"))
-    print(break_key("encrypted/wersja1.5_zaszyfrowana(2).pdf", "klucze.txt"))
-    print(break_key("encrypted/wersja1.6_zaszyfrowana(1).pdf", "klucze.txt"))
-    print(break_key("encrypted/wersja1.6_zaszyfrowana(2).pdf", "klucze.txt"))
-    print(break_key("encrypted/wersja1.7_zaszyfrowana(1).pdf", "klucze.txt"))
-    print(break_key("encrypted/wersja1.7_zaszyfrowana(2).pdf", "klucze.txt"))
-    print(break_key("encrypted/wersja1.8_zaszyfrowana(1).pdf", "klucze.txt"))
-    print(break_key("encrypted/wersja1.8_zaszyfrowana(2).pdf", "klucze.txt"))
-    print(break_key("encrypted/wersja1.9_zaszyfrowana(1).pdf", "klucze.txt"))
-    print(break_key("encrypted/wersja1.9_zaszyfrowana(2).pdf", "klucze.txt"))
-
+    f = ["wersja1.1_zaszyfrowana(1).pdf",
+         "wersja1.1_zaszyfrowana.pdf",
+         "wersja1.2_zaszyfrowana(1).pdf",
+         "wersja1.2_zaszyfrowana(2).pdf",
+         "wersja1.3_zaszyfrowana(1).pdf",
+         "wersja1.3_zaszyfrowana(2).pdf",
+         "wersja1.4_zaszyfrowana(1).pdf",
+         "wersja1.4_zaszyfrowana(2).pdf",
+         "wersja1.5_zaszyfrowana(1).pdf",
+         "wersja1.5_zaszyfrowana(2).pdf",
+         "wersja1.6_zaszyfrowana(1).pdf",
+         "wersja1.6_zaszyfrowana(2).pdf",
+         "wersja1.7_zaszyfrowana(1).pdf",
+         "wersja1.7_zaszyfrowana(2).pdf",
+         "wersja1.8_zaszyfrowana(1).pdf",
+         "wersja1.8_zaszyfrowana(2).pdf",
+         "wersja1.9_zaszyfrowana(1).pdf",
+         "wersja1.9_zaszyfrowana(2).pdf"
+         ]
+    i = len(f)-1
+    while i >= 0:
+        input = "encrypted/" + f[i]
+        output = "decrypted/(decrypted)" + f[i]
+        read(input, output, break_key(input, "klucze.txt"), "decrypt")
+        i -= 1
