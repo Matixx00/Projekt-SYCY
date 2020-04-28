@@ -72,9 +72,24 @@ def read(input, output, key, mode):
                 elif mode == "decrypt":
                     w = decrypt(v1, v2, endkey)
 
-
+                print(w[0])
                 outfile.write(w[0].to_bytes(length=4, byteorder='big'))
                 outfile.write(w[1].to_bytes(length=4, byteorder='big'))
+
+
+def break_key(input, wordlist):
+    with open(input, 'rb') as infile:
+        v1 = int(infile.read(4).hex(), 16)
+        v2 = int(infile.read(4).hex(), 16)
+        with open(wordlist, 'rb') as list:
+            i = int(list.readline())
+            while i > 0:
+                key = str(list.readline())[2:]
+                endkey = extract_key(key)
+                w = decrypt(v1, v2, endkey)
+                if w[0] == 626017350:
+                    return key
+                i -= 1
 
 
 if __name__ == "__main__":
@@ -108,8 +123,9 @@ if __name__ == "__main__":
     # poniżej znajdują się przykładowe sposoby użycia programu.
     # =============================================================================================
 
-    # read("1.png", "encrypted.png", "Hulk is the best", "encrypt")
-    read("en_secret.png", "2.png", "Hulk is the best", "decrypt")
+    # read("random_pdf.pdf", "encrypted.pdf", "Hulk is the best", "encrypt")
+    # read("encrypted.pdf", "decrypted.pdf", "Hulk is the best", "decrypt")
+
 
     # v1 = 13854825223
     # v2 = 6398764994
@@ -120,3 +136,5 @@ if __name__ == "__main__":
     # print(bin(w[0]))
     # d = decrypt(w[0], w[1], key)
     # print(d)
+
+    print(break_key("encrypted.pdf", "hulk.txt"))
