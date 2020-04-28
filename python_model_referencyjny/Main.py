@@ -72,8 +72,9 @@ def read(input, output, key, mode):
                 elif mode == "decrypt":
                     w = decrypt(v1, v2, endkey)
 
-                outfile.write(w[0].to_bytes(length=int(w[0].bit_length() / 8) + 1, byteorder='big'))
-                outfile.write(w[1].to_bytes(length=int(w[1].bit_length() / 8) + 1, byteorder='big'))
+
+                outfile.write(w[0].to_bytes(length=4, byteorder='big'))
+                outfile.write(w[1].to_bytes(length=4, byteorder='big'))
 
 
 if __name__ == "__main__":
@@ -107,13 +108,14 @@ if __name__ == "__main__":
     # poniżej znajdują się przykładowe sposoby użycia programu.
     # =============================================================================================
 
-    read("random_pdf.pdf", "encrypted.pdf", "hulk is the best", "encrypt")
-    # read("encrypted.pdf", "decrypted.pdf", "hulk is the best", "decrypt")
+    # read("random_pdf.pdf", "encrypted.pdf", "hulk is the best", "encrypt")
+    read("encrypted.pdf", "decrypted.pdf", "hulk is the best", "decrypt")
 
     # v1 = 13854825223
     # v2 = 6398764994
     # print(bin(v2))
     # key = extract_key("hulk is the best")
+    # print(len(bin(key[0])[2:] + bin(key[1])[2:] + bin(key[2])[2:] + bin(key[3])[2:]))
     # w = encrypt(v1, v2, key)
     # print(bin(w[0]))
     # d = decrypt(w[0], w[1], key)
