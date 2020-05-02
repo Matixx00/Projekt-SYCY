@@ -21,4 +21,3 @@ module counter(
 	// Output logic
 	assign value = cnt_reg;
 endmodule
-
