@@ -1,0 +1,74 @@
+# do modulik_run_msim_rtl_verilog.do
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Model Technology ModelSim - Intel FPGA Edition vmap 10.5b Lib Mapping Utility 2016.10 Oct  5 2016
+# vmap work rtl_work 
+# Copying /opt/intelFPGA_lite/19.1/modelsim_ase/linuxaloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# 
+# vlog -vlog01compat -work work +incdir+/home/santa/Documents/pw/2020L/sycy/testin/acceltry {/home/santa/Documents/pw/2020L/sycy/testin/acceltry/functionF.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 23:04:10 on May 05,2020
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/santa/Documents/pw/2020L/sycy/testin/acceltry" /home/santa/Documents/pw/2020L/sycy/testin/acceltry/functionF.v 
+# -- Compiling module functionF
+# 
+# Top level modules:
+# 	functionF
+# End time: 23:04:10 on May 05,2020, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+/home/santa/Documents/pw/2020L/sycy/testin/acceltry {/home/santa/Documents/pw/2020L/sycy/testin/acceltry/singleTEA.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 23:04:10 on May 05,2020
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/santa/Documents/pw/2020L/sycy/testin/acceltry" /home/santa/Documents/pw/2020L/sycy/testin/acceltry/singleTEA.v 
+# -- Compiling module singleTEA
+# 
+# Top level modules:
+# 	singleTEA
+# End time: 23:04:10 on May 05,2020, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+/home/santa/Documents/pw/2020L/sycy/testin/acceltry {/home/santa/Documents/pw/2020L/sycy/testin/acceltry/modulik.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 23:04:10 on May 05,2020
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/santa/Documents/pw/2020L/sycy/testin/acceltry" /home/santa/Documents/pw/2020L/sycy/testin/acceltry/modulik.v 
+# -- Compiling module modulik
+# 
+# Top level modules:
+# 	modulik
+# End time: 23:04:10 on May 05,2020, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+vsim work.modulik
+# vsim work.modulik 
+# Start time: 23:04:45 on May 05,2020
+# Loading work.modulik
+# Loading work.singleTEA
+# Loading work.functionF
+force -freeze sim:/modulik/inBlock64 'h42c3_7893_fbc2_d912 0
+force -freeze sim:/modulik/key 'h4875_6c6b_2069_7320_7468_616c_616d_6963 0
+run
+# ** Warning: (vsim-3116) Problem reading symbols from linux-gate.so.1 : can not open ELF file.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libpthread.so.0 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/librt.so.1 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libdl.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libm.so.6 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libc.so.6 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/ld-linux.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnss_files.so.2 : module was loaded at an absolute address.
+add wave
+# wrong number of args for "add wave".
+# Usage: add wave [-allowconstants] [-clampanalog {0|1}] [-color <standard_color_name>] [-depth <level>] [-divider <divider_name>...] [-expand <signal_name>] [-filter <f> | -nofilter <f>] [-format <type> | -<format>] [-group <group_name> [<sig_name1>...]] [-height <pixels>] [[-in] [-out] [-inout] | [-ports]] [-internal] [-label <name>] [-max <real_num>] [-min <real_num>] [-noupdate] [-numdynitem <int>] [-position <location>] [-queueends] [-radix <type> | -<radix_type>] [-radixenumnumeric | -radixenumsymbolic] [-recursive] [-startdynitem <int>] [-time] [<object_name>...] [{<object_name> {sig1 sig2 ...}}] 
+add wave -radix unsigned / modulik
+# (vish-4014) No objects found matching '/'.
+# (vish-4014) No objects found matching 'modulik'.
+add wave -radix unsigned  modulik
+# (vish-4014) No objects found matching 'modulik'.
+add wave -radix unsigned  modulik.vo
+# (vish-4014) No objects found matching 'modulik.vo'.
+run -all
+# 
+# stdin: <EOF>
+# End time: 23:26:13 on May 05,2020, Elapsed time: 0:21:28
+# Errors: 4, Warnings: 8
