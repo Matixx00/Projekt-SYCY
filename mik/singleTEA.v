@@ -3,43 +3,43 @@ module singleTEA (
 	input			encrypt,	// 1 -> encrypt		0 -> decrypt
 	
 	input [127:0]	key,
-	input [31:0]	inBlack,
-					inRed,
+	input [31:0]	inFirst,
+					inSecond,
 					sum,	// suppplied from instantiating module - suitable for encryption or decryption
 					
-	output [31:0]	outBlack,
-					outRed
+	output [31:0]	outFirst,
+					outSecond
 );
 
-	wire [31:0] black,
-				red;
+	wire [31:0] first,
+				second;
 	wire [31:0] result1,
 				result2;
 				
 	
-	assign black = inBlack;
+	assign first = inFirst;
 	
 	
 	functionF f1(
 		.inKeyL(key[95:64]),
 		.inKeyR(key[127:96]),
 		.sum(sum),
-		.chunk32(inBlack),
+		.chunk32(first),
 		.out32(result1)
 	);
 	
-	assign red = encrypt ? inRed + result1 : inRed - result1 ;
+	assign second = encrypt ? inSecond + result1 : inSecond - result1;
 	
 
 	functionF f2(
 		.inKeyL(key[31:0]),
 		.inKeyR(key[63:32]),
 		.sum(sum),
-		.chunk32(red),
+		.chunk32(second),
 		.out32(result2)
 	);
 	
-	assign outBlack = encrypt ? inBlack + result2 : inBlack - result2 ;
-	assign outRed = red;
+	assign outFirst = encrypt ? inFirst + result2 : inFirst - result2;
+	assign outSecond = second;
 
 endmodule

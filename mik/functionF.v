@@ -9,8 +9,8 @@ module functionF (
 	reg [31:0] out_reg;
 
 	always@(*)
-		out_reg  <= ( ((chunk32 << 4) + inKeyL) ^ (chunk32 + sum) ^ ((chunk32 >> 5) + inKeyR) );
-		//out_reg  <= ( ({chunk32[27:0], 4'b0000} + inKeyL) ^ (chunk32 + sum) ^ ({5'b00000,chunk32[31:5]} + inKeyR) );
+		//out_reg  <= ( ((chunk32 << 4) + inKeyL) ^ (chunk32 + sum) ^ ((chunk32 >> 5) + inKeyR) );
+		out_reg  <= ( ({chunk32[27:0], 4'b0000} + inKeyL) ^ (chunk32 + sum) ^ ({5'b00000,chunk32[31:5]} + inKeyR) );
 		
 	assign out32 = out_reg;		
 
