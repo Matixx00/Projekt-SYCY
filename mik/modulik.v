@@ -28,14 +28,14 @@ module modulik(
 		.clk(clk),
 		.encrypt(encrypt),
 		.key(key),
-		.inBlack(inBlock64[63:32]),
-		.inRed(inBlock64[31:0]),
+		.inFirst(inBlock64[63:32]),
+		.inSecond(inBlock64[31:0]),
 		.sum (
 			encrypt ? 32'h9e37_79b9	//DELTA*1
 					: 32'hc6ef_3720	//DELTA*32
 		),
-		.outBlack(black1),
-		.outRed(red1)
+		.outFirst(black1),
+		.outSecond(red1)
 	);
 
 
@@ -50,14 +50,14 @@ module modulik(
 		.clk(clk),
 		.encrypt(encrypt),
 		.key(key),
-		.inBlack(black1),
-		.inRed(red1),
+		.inFirst(black1),
+		.inSecond(red1),
 		.sum (
 			encrypt ? 32'h3c6e_f372	//DELTA*2
 					: 32'h28b7_bd67	//DELTA*31
 		),
-		.outBlack(black2),
-		.outRed(red2)
+		.outFirst(black2),
+		.outSecond(red2)
 	);
 	
 	
@@ -68,14 +68,14 @@ module modulik(
 		.clk(clk),
 		.encrypt(encrypt),
 		.key(key),
-		.inBlack(black2),
-		.inRed(red2),
+		.inFirst(black2),
+		.inSecond(red2),
 		.sum (
 			encrypt ? 32'hdaa6_6d2b	//DELTA*3
 					: 32'h8a80_43ae	//DELTA*30
 		),
-		.outBlack(black3),
-		.outRed(red3)
+		.outFirst(black3),
+		.outSecond(red3)
 	);
 	
 	
@@ -86,14 +86,14 @@ module modulik(
 		.clk(clk),
 		.encrypt(encrypt),
 		.key(key),
-		.inBlack(black3),
-		.inRed(red3),
+		.inFirst(black3),
+		.inSecond(red3),
 		.sum (
 			encrypt ? 32'h78dd_e6e4	//DELTA*4
 					: 32'hec48_c9f5	//DELTA*29
 		),
-		.outBlack(black4),
-		.outRed(red4)
+		.outFirst(black4),
+		.outSecond(red4)
 	);
 	
 	
@@ -104,14 +104,14 @@ module modulik(
 		.clk(clk),
 		.encrypt(encrypt),
 		.key(key),
-		.inBlack(black4),
-		.inRed(red4),
+		.inFirst(black4),
+		.inSecond(red4),
 		.sum (
 			encrypt ? 32'h1715_609d	//DELTA*5
 					: 32'h4e11_503c	//DELTA*28
 		),
-		.outBlack(black5),
-		.outRed(red5)
+		.outFirst(black5),
+		.outSecond(red5)
 	);
 	
 	
@@ -122,14 +122,14 @@ module modulik(
 		.clk(clk),
 		.encrypt(encrypt),
 		.key(key),
-		.inBlack(black5),
-		.inRed(red5),
+		.inFirst(black5),
+		.inSecond(red5),
 		.sum (
 			encrypt ? 32'hb54c_da56	//DELTA*6
 					: 32'hafd9_d683	//DELTA*27
 		),
-		.outBlack(black6),
-		.outRed(red6)
+		.outFirst(black6),
+		.outSecond(red6)
 	);
 	
 	
@@ -140,14 +140,14 @@ module modulik(
 		.clk(clk),
 		.encrypt(encrypt),
 		.key(key),
-		.inBlack(black6),
-		.inRed(red6),
+		.inFirst(black6),
+		.inSecond(red6),
 		.sum (
 			encrypt ? 32'h5384_540f	//DELTA*7
 					: 32'h11a2_5cca	//DELTA*26
 		),
-		.outBlack(black7),
-		.outRed(red7)
+		.outFirst(black7),
+		.outSecond(red7)
 	);
 	
 	
@@ -158,14 +158,14 @@ module modulik(
 		.clk(clk),
 		.encrypt(encrypt),
 		.key(key),
-		.inBlack(black7),
-		.inRed(red7),
+		.inFirst(black7),
+		.inSecond(red7),
 		.sum (
 			encrypt ? 32'hf1bb_cdc8	//DELTA*8
 					: 32'h736a_e311	//DELTA*25
 		),
-		.outBlack(black8),
-		.outRed(red8)
+		.outFirst(black8),
+		.outSecond(red8)
 	);
 	
 	
@@ -176,14 +176,14 @@ module modulik(
 		.clk(clk),
 		.encrypt(encrypt),
 		.key(key),
-		.inBlack(black8),
-		.inRed(red8),
+		.inFirst(black8),
+		.inSecond(red8),
 		.sum (
 			encrypt ? 32'h8ff3_4781	//DELTA*9
 					: 32'hd533_6958	//DELTA*24
 		),
-		.outBlack(black9),
-		.outRed(red9)
+		.outFirst(black9),
+		.outSecond(red9)
 	);
 	
 	
@@ -194,14 +194,14 @@ module modulik(
 		.clk(clk),
 		.encrypt(encrypt),
 		.key(key),
-		.inBlack(black9),
-		.inRed(red9),
+		.inFirst(black9),
+		.inSecond(red9),
 		.sum (
 			encrypt ? 32'h2e2a_c13a	//DELTA*10
 					: 32'h36fb_ef9f	//DELTA*23
 		),
-		.outBlack(black10),
-		.outRed(red10)
+		.outFirst(black10),
+		.outSecond(red10)
 	);
 	
 	
@@ -212,14 +212,14 @@ module modulik(
 		.clk(clk),
 		.encrypt(encrypt),
 		.key(key),
-		.inBlack(black10),
-		.inRed(red10),
+		.inFirst(black10),
+		.inSecond(red10),
 		.sum (
 			encrypt ? 32'hcc62_3af3	//DELTA*11
 					: 32'h98c4_75e6	//DELTA*22
 		),
-		.outBlack(black11),
-		.outRed(red11)
+		.outFirst(black11),
+		.outSecond(red11)
 	);
 	
 	
@@ -230,14 +230,14 @@ module modulik(
 		.clk(clk),
 		.encrypt(encrypt),
 		.key(key),
-		.inBlack(black11),
-		.inRed(red11),
+		.inFirst(black11),
+		.inSecond(red11),
 		.sum (
 			encrypt ? 32'h6a99_b4ac	//DELTA*12
 					: 32'hfa8c_fc2d	//DELTA*21
 		),
-		.outBlack(black12),
-		.outRed(red12)
+		.outFirst(black12),
+		.outSecond(red12)
 	);
 	
 		
@@ -248,14 +248,14 @@ module modulik(
 		.clk(clk),
 		.encrypt(encrypt),
 		.key(key),
-		.inBlack(black12),
-		.inRed(red12),
+		.inFirst(black12),
+		.inSecond(red12),
 		.sum (
 			encrypt ? 32'h08d1_2e65	//DELTA*13
 					: 32'h5c55_8274	//DELTA*20
 		),
-		.outBlack(black13),
-		.outRed(red13)
+		.outFirst(black13),
+		.outSecond(red13)
 	);
 	
 	
@@ -266,14 +266,14 @@ module modulik(
 		.clk(clk),
 		.encrypt(encrypt),
 		.key(key),
-		.inBlack(black13),
-		.inRed(red13),
+		.inFirst(black13),
+		.inSecond(red13),
 		.sum (
 			encrypt ? 32'ha708_a81e	//DELTA*14
 					: 32'hbe1e_08bb	//DELTA*19
 		),
-		.outBlack(black14),
-		.outRed(red14)
+		.outFirst(black14),
+		.outSecond(red14)
 	);
 	
 		
@@ -284,14 +284,14 @@ module modulik(
 		.clk(clk),
 		.encrypt(encrypt),
 		.key(key),
-		.inBlack(black14),
-		.inRed(red14),
+		.inFirst(black14),
+		.inSecond(red14),
 		.sum (
 			encrypt ? 32'h4540_21d7	//DELTA*15
 					: 32'h1fe6_8f02	//DELTA*18
 		),
-		.outBlack(black15),
-		.outRed(red15)
+		.outFirst(black15),
+		.outSecond(red15)
 	);
 	
 	
@@ -302,14 +302,14 @@ module modulik(
 		.clk(clk),
 		.encrypt(encrypt),
 		.key(key),
-		.inBlack(black15),
-		.inRed(red15),
+		.inFirst(black15),
+		.inSecond(red15),
 		.sum (
 			encrypt ? 32'he377_9b90	//DELTA*16
 					: 32'h81af_1549	//DELTA*17
 		),
-		.outBlack(black16),
-		.outRed(red16)
+		.outFirst(black16),
+		.outSecond(red16)
 	);
 	
 		
@@ -320,14 +320,14 @@ module modulik(
 		.clk(clk),
 		.encrypt(encrypt),
 		.key(key),
-		.inBlack(black16),
-		.inRed(red16),
+		.inFirst(black16),
+		.inSecond(red16),
 		.sum (
 			encrypt ? 32'h81af_1549	//DELTA*17
 					: 32'he377_9b90	//DELTA*16
 		),
-		.outBlack(black17),
-		.outRed(red17)
+		.outFirst(black17),
+		.outSecond(red17)
 	);
 	
 	
@@ -338,14 +338,14 @@ module modulik(
 		.clk(clk),
 		.encrypt(encrypt),
 		.key(key),
-		.inBlack(black17),
-		.inRed(red17),
+		.inFirst(black17),
+		.inSecond(red17),
 		.sum (
 			encrypt ? 32'h1fe6_8f02	//DELTA*18
 					: 32'h4540_21d7	//DELTA*15
 		),
-		.outBlack(black18),
-		.outRed(red18)
+		.outFirst(black18),
+		.outSecond(red18)
 	);
 	
 	
@@ -356,14 +356,14 @@ module modulik(
 		.clk(clk),
 		.encrypt(encrypt),
 		.key(key),
-		.inBlack(black18),
-		.inRed(red18),
+		.inFirst(black18),
+		.inSecond(red18),
 		.sum (
 			encrypt ? 32'hbe1e_08bb	//DELTA*19
 					: 32'ha708_a81e	//DELTA*14
 		),
-		.outBlack(black19),
-		.outRed(red19)
+		.outFirst(black19),
+		.outSecond(red19)
 	);
 	
 	
@@ -374,14 +374,14 @@ module modulik(
 		.clk(clk),
 		.encrypt(encrypt),
 		.key(key),
-		.inBlack(black19),
-		.inRed(red19),
+		.inFirst(black19),
+		.inSecond(red19),
 		.sum (
 			encrypt ? 32'h5c55_8274	//DELTA*20
 					: 32'h08d1_2e65	//DELTA*13
 		),
-		.outBlack(black20),
-		.outRed(red20)
+		.outFirst(black20),
+		.outSecond(red20)
 	);
 	
 		
@@ -392,14 +392,14 @@ module modulik(
 		.clk(clk),
 		.encrypt(encrypt),
 		.key(key),
-		.inBlack(black20),
-		.inRed(red20),
+		.inFirst(black20),
+		.inSecond(red20),
 		.sum (
 			encrypt ? 32'hfa8c_fc2d	//DELTA*21
 					: 32'h6a99_b4ac	//DELTA*12
 		),
-		.outBlack(black21),
-		.outRed(red21)
+		.outFirst(black21),
+		.outSecond(red21)
 	);
 	
 	
@@ -410,14 +410,14 @@ module modulik(
 		.clk(clk),
 		.encrypt(encrypt),
 		.key(key),
-		.inBlack(black21),
-		.inRed(red21),
+		.inFirst(black21),
+		.inSecond(red21),
 		.sum (
 			encrypt ? 32'h98c4_75e6	//DELTA*22
 					: 32'hcc62_3af3	//DELTA*11
 		),
-		.outBlack(black22),
-		.outRed(red22)
+		.outFirst(black22),
+		.outSecond(red22)
 	);
 	
 		
@@ -428,14 +428,14 @@ module modulik(
 		.clk(clk),
 		.encrypt(encrypt),
 		.key(key),
-		.inBlack(black22),
-		.inRed(red22),
+		.inFirst(black22),
+		.inSecond(red22),
 		.sum (
 			encrypt ? 32'h36fb_ef9f	//DELTA*23
 					: 32'h2e2a_c13a	//DELTA*10
 		),
-		.outBlack(black23),
-		.outRed(red23)
+		.outFirst(black23),
+		.outSecond(red23)
 	);
 	
 	
@@ -446,14 +446,14 @@ module modulik(
 		.clk(clk),
 		.encrypt(encrypt),
 		.key(key),
-		.inBlack(black23),
-		.inRed(red23),
+		.inFirst(black23),
+		.inSecond(red23),
 		.sum (
 			encrypt ? 32'hd533_6958	//DELTA*24
 					: 32'h8ff3_4781	//DELTA*9
 		),
-		.outBlack(black24),
-		.outRed(red24)
+		.outFirst(black24),
+		.outSecond(red24)
 	);
 	
 		
@@ -464,14 +464,14 @@ module modulik(
 		.clk(clk),
 		.encrypt(encrypt),
 		.key(key),
-		.inBlack(black24),
-		.inRed(red24),
+		.inFirst(black24),
+		.inSecond(red24),
 		.sum (
 			encrypt ? 32'h736a_e311	//DELTA*25
 					: 32'hf1bb_cdc8	//DELTA*8
 		),
-		.outBlack(black25),
-		.outRed(red25)
+		.outFirst(black25),
+		.outSecond(red25)
 	);
 	
 	
@@ -482,14 +482,14 @@ module modulik(
 		.clk(clk),
 		.encrypt(encrypt),
 		.key(key),
-		.inBlack(black25),
-		.inRed(red25),
+		.inFirst(black25),
+		.inSecond(red25),
 		.sum (
 			encrypt ? 32'h11a2_5cca	//DELTA*26
 					: 32'h5384_540f	//DELTA*7
 		),
-		.outBlack(black26),
-		.outRed(red26)
+		.outFirst(black26),
+		.outSecond(red26)
 	);
 	
 	
@@ -500,14 +500,14 @@ module modulik(
 		.clk(clk),
 		.encrypt(encrypt),
 		.key(key),
-		.inBlack(black26),
-		.inRed(red26),
+		.inFirst(black26),
+		.inSecond(red26),
 		.sum (
 			encrypt ? 32'hafd9_d683	//DELTA*27
 					: 32'hb54c_da56	//DELTA*6
 		),
-		.outBlack(black27),
-		.outRed(red27)
+		.outFirst(black27),
+		.outSecond(red27)
 	);
 	
 		
@@ -518,14 +518,14 @@ module modulik(
 		.clk(clk),
 		.encrypt(encrypt),
 		.key(key),
-		.inBlack(black27),
-		.inRed(red27),
+		.inFirst(black27),
+		.inSecond(red27),
 		.sum (
 			encrypt ? 32'h4e11_503c	//DELTA*28
 					: 32'h1715_609d	//DELTA*5
 		),
-		.outBlack(black28),
-		.outRed(red28)
+		.outFirst(black28),
+		.outSecond(red28)
 	);
 	
 	
@@ -536,14 +536,14 @@ module modulik(
 		.clk(clk),
 		.encrypt(encrypt),
 		.key(key),
-		.inBlack(black28),
-		.inRed(red28),
+		.inFirst(black28),
+		.inSecond(red28),
 		.sum (
 			encrypt ? 32'hec48_c9f5	//DELTA*29
 					: 32'h78dd_e6e4	//DELTA*4
 		),
-		.outBlack(black29),
-		.outRed(red29)
+		.outFirst(black29),
+		.outSecond(red29)
 	);
 	
 		
@@ -554,14 +554,14 @@ module modulik(
 		.clk(clk),
 		.encrypt(encrypt),
 		.key(key),
-		.inBlack(black29),
-		.inRed(red29),
+		.inFirst(black29),
+		.inSecond(red29),
 		.sum (
 			encrypt ? 32'h8a80_43ae	//DELTA*30
 					: 32'hdaa6_6d2b	//DELTA*3
 		),
-		.outBlack(black30),
-		.outRed(red30)
+		.outFirst(black30),
+		.outSecond(red30)
 	);
 	
 	
@@ -572,14 +572,14 @@ module modulik(
 		.clk(clk),
 		.encrypt(encrypt),
 		.key(key),
-		.inBlack(black30),
-		.inRed(red30),
+		.inFirst(black30),
+		.inSecond(red30),
 		.sum (
 			encrypt ? 32'h28b7_bd67	//DELTA*31
 					: 32'h3c6e_f372	//DELTA*2
 		),
-		.outBlack(black31),
-		.outRed(red31)
+		.outFirst(black31),
+		.outSecond(red31)
 	);
 	
 					
@@ -593,14 +593,14 @@ module modulik(
 		.clk(clk),
 		.encrypt(encrypt),
 		.key(key),
-		.inBlack(black31),
-		.inRed(red31),
+		.inFirst(black31),
+		.inSecond(red31),
 		.sum(
 			encrypt ? 32'hc6ef_3720	//DELTA*32
 					: 32'h9e37_79b9	//DELTA*1
 		),
-		.outBlack(outBlock64[31:0]),
-		.outRed(outBlock64[63:32])
+		.outFirst(outBlock64[31:0]),
+		.outSecond(outBlock64[63:32])
 	);
 	
 	
