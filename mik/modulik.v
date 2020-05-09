@@ -1,10 +1,13 @@
 module modulik(
 	input			clk, ena, rst,	// standard controlls
 					encrypt,		// should we encrypt?
-	input [63:0]	inBlock64,		// a 64 bit block to process
-	input [127:0]	key,			// key for en/decryption
-	output [63:0]	outBlock64		// processed 64 bit block
+	input	[ 63:0]	inBlock64,		// a 64 bit block to process
+	input	[127:0]	key,			// key for en/decryption
+	
+	output	[ 63:0]	outBlock64		// processed 64 bit block
 );
+
+
 
 	localparam PDF_PLAIN_HEADER_1		= 32'h2550_4446;	// %PDF
 	localparam PDF_ENCRYPTED_HEADER_1	= 32'h42c3_7893;
