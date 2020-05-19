@@ -9,14 +9,12 @@ module full_decryptor(
 
 	localparam DELTA = 32'h9e37_79b9;	// from TEA specs    (sqrt(5)-1) * 2^31
 
-
-
 /*
  * First round of TEA.
  * Input for processing is from parent module input inBlock64.
  * Output goes on the wire, to be input into the 2nd round of TEA.
  */
-	wire [31:0] wire_1_V0, wire_1_V1;
+	wire [31:0] wire_1_V1, wire_1_V0;
 	
 	decryptor_single_round tea_dec_1 (
 //		.clk(clk),
@@ -40,7 +38,7 @@ module full_decryptor(
 		flipper1 <= {wire_1_V1, wire_1_V0};
 	end
 
-	wire [31:0] wire_2_V0_t, wire_2_V1_t;
+	wire [31:0] wire_2_V1_t, wire_2_V0_t;
 
 	assign wire_2_V0_t = flipper1[31: 0];
 	assign wire_2_V1_t = flipper1[63:32];
@@ -52,7 +50,7 @@ module full_decryptor(
  * Input is from previous round on the previous wire.
  * Output is on new wire for the following round.
  */
-//	wire [31:0] wire_2_V0, wire_2_V1;
+	wire [31:0] wire_2_V0, wire_2_V1;
 	
 	decryptor_single_round tea_dec_2 (
 //		.clk(clk),
@@ -81,7 +79,7 @@ module full_decryptor(
 	
 	
 // Round 3:
-	//wire [31:0] wire_3_V1, wire_3_V0;
+	wire [31:0] wire_3_V1, wire_3_V0;
 	
 	decryptor_single_round tea_dec_3 (
 //		.clk(clk),
@@ -109,7 +107,7 @@ module full_decryptor(
 	assign wire_4_V1_t = flipper3[63:32];
 	
 // Round 4:
-	//wire [31:0] wire_4_V1, wire_4_V0;
+	wire [31:0] wire_4_V1, wire_4_V0;
 	
 	decryptor_single_round tea_dec_4 (
 //		.clk(clk),
@@ -137,7 +135,7 @@ module full_decryptor(
 	assign wire_5_V1_t = flipper4[63:32];
 	
 // Round 5:
-	//wire [31:0] wire_5_V1, wire_5_V0;
+	wire [31:0] wire_5_V1, wire_5_V0;
 	
 	decryptor_single_round tea_dec_5 (
 //		.clk(clk),
@@ -165,7 +163,7 @@ module full_decryptor(
 	assign wire_6_V1_t = flipper5[63:32];
 	
 // Round 6:
-	//wire [31:0] wire_6_V1, wire_6_V0;
+	wire [31:0] wire_6_V1, wire_6_V0;
 	
 	decryptor_single_round tea_dec_6 (
 //		.clk(clk),
@@ -193,7 +191,7 @@ module full_decryptor(
 	assign wire_7_V1_t = flipper6[63:32];
 	
 // Round 7:
-	//wire [31:0] wire_7_V1, wire_7_V0;
+	wire [31:0] wire_7_V1, wire_7_V0;
 	
 	decryptor_single_round tea_dec_7 (
 //		.clk(clk),
@@ -221,7 +219,7 @@ module full_decryptor(
 	assign wire_8_V1_t = flipper7[63:32];
 	
 // Round 8:
-	//wire [31:0] wire_8_V1, wire_8_V0;
+	wire [31:0] wire_8_V1, wire_8_V0;
 	
 	decryptor_single_round tea_dec_8 (
 //		.clk(clk),
@@ -249,7 +247,7 @@ module full_decryptor(
 	assign wire_9_V1_t = flipper8[63:32];
 	
 // Round 9:
-	//wire [31:0] wire_9_V1, wire_9_V0;
+	wire [31:0] wire_9_V1, wire_9_V0;
 	
 	decryptor_single_round tea_dec_9 (
 //		.clk(clk),
@@ -277,7 +275,7 @@ module full_decryptor(
 	assign wire_10_V1_t = flipper9[63:32];
 	
 // Round 10:
-	//wire [31:0] wire_10_V1, wire_10_V0;
+	wire [31:0] wire_10_V1, wire_10_V0;
 	
 	decryptor_single_round tea_dec_10 (
 //		.clk(clk),
@@ -305,7 +303,7 @@ module full_decryptor(
 	assign wire_11_V1_t = flipper10[63:32];
 	
 // Round 11:
-	//wire [31:0] wire_11_V1, wire_11_V0;
+	wire [31:0] wire_11_V1, wire_11_V0;
 	
 	decryptor_single_round tea_dec_11 (
 //		.clk(clk),
@@ -333,7 +331,7 @@ module full_decryptor(
 	assign wire_12_V1_t = flipper11[63:32];
 	
 // Round 12:
-	//wire [31:0] wire_12_V1, wire_12_V0;
+	wire [31:0] wire_12_V1, wire_12_V0;
 	
 	decryptor_single_round tea_dec_12 (
 //		.clk(clk),
@@ -361,7 +359,7 @@ module full_decryptor(
 	assign wire_13_V1_t = flipper12[63:32];
 		
 // Round 13:
-	//wire [31:0] wire_13_V1, wire_13_V0;
+	wire [31:0] wire_13_V1, wire_13_V0;
 	
 	decryptor_single_round tea_dec_13 (
 //		.clk(clk),
@@ -389,7 +387,7 @@ module full_decryptor(
 	assign wire_14_V1_t = flipper13[63:32];
 	
 // Round 14:
-	//wire [31:0] wire_14_V1, wire_14_V0;
+	wire [31:0] wire_14_V1, wire_14_V0;
 	
 	decryptor_single_round tea_dec_14 (
 //		.clk(clk),
@@ -417,7 +415,7 @@ module full_decryptor(
 	assign wire_15_V1_t = flipper14[63:32];
 		
 // Round 15:
-	//wire [31:0] wire_15_V1, wire_15_V0;
+	wire [31:0] wire_15_V1, wire_15_V0;
 	
 	decryptor_single_round tea_dec_15 (
 //		.clk(clk),
@@ -445,7 +443,7 @@ module full_decryptor(
 	assign wire_16_V1_t = flipper15[63:32];
 	
 // Round 16:
-	//wire [31:0] wire_16_V1, wire_16_V0;
+	wire [31:0] wire_16_V1, wire_16_V0;
 	
 	decryptor_single_round tea_dec_16 (
 //		.clk(clk),
@@ -473,7 +471,7 @@ module full_decryptor(
 	assign wire_17_V1_t = flipper16[63:32];
 		
 // Round 17:
-	//wire [31:0] wire_17_V1, wire_17_V0;
+	wire [31:0] wire_17_V1, wire_17_V0;
 	
 	decryptor_single_round tea_dec_17 (
 //		.clk(clk),
@@ -501,7 +499,7 @@ module full_decryptor(
 	assign wire_18_V1_t = flipper17[63:32];
 	
 // Round 18:
-	//wire [31:0] wire_18_V1, wire_18_V0;
+	wire [31:0] wire_18_V1, wire_18_V0;
 	
 	decryptor_single_round tea_dec_18 (
 //		.clk(clk),
@@ -529,14 +527,14 @@ module full_decryptor(
 	assign wire_19_V1_t = flipper18[63:32];
 	
 // Round 19:
-	//wire [31:0] wire_19_V1, wire_19_V0;
+	wire [31:0] wire_19_V1, wire_19_V0;
 	
 	decryptor_single_round tea_dec_19 (
 //		.clk(clk),
 //		.encrypt(encrypt),
 		.key(key),
 		.inV0(wire_19_V0_t),
-		.inV1(wire_19_V0_t),
+		.inV1(wire_19_V1_t),
 		.sum (
 //			encrypt ? 32'hbe1e_08bb	//DELTA*19
 //					: 32'ha708_a81e	//
@@ -557,7 +555,7 @@ module full_decryptor(
 	assign wire_20_V1_t = flipper19[63:32];
 	
 // Round 20:
-	//wire [31:0] wire_20_V1, wire_20_V0;
+	wire [31:0] wire_20_V1, wire_20_V0;
 	
 	decryptor_single_round tea_dec_20 (
 //		.clk(clk),
@@ -585,7 +583,7 @@ module full_decryptor(
 	assign wire_21_V1_t = flipper20[63:32];
 		
 // Round 21:
-	//wire [31:0] wire_21_V1, wire_21_V0;
+	wire [31:0] wire_21_V1, wire_21_V0;
 	
 	decryptor_single_round tea_dec_21 (
 //		.clk(clk),
@@ -613,7 +611,7 @@ module full_decryptor(
 	assign wire_22_V1_t = flipper21[63:32];
 	
 // Round 22:
-	//wire [31:0] wire_22_V1, wire_22_V0;
+	wire [31:0] wire_22_V1, wire_22_V0;
 	
 	decryptor_single_round tea_dec_22 (
 //		.clk(clk),
@@ -641,7 +639,7 @@ module full_decryptor(
 	assign wire_23_V1_t = flipper22[63:32];
 		
 // Round 23:
-	//wire [31:0] wire_23_V1, wire_23_V0;
+	wire [31:0] wire_23_V1, wire_23_V0;
 	
 	decryptor_single_round tea_dec_23 (
 //		.clk(clk),
@@ -669,7 +667,7 @@ module full_decryptor(
 	assign wire_24_V1_t = flipper23[63:32];
 	
 // Round 24:
-	//wire [31:0] wire_24_V1, wire_24_V0;
+	wire [31:0] wire_24_V1, wire_24_V0;
 	
 	decryptor_single_round tea_dec_24 (
 //		.clk(clk),
@@ -697,7 +695,7 @@ module full_decryptor(
 	assign wire_25_V1_t = flipper24[63:32];
 		
 // Round 25:
-	//wire [31:0] wire_25_V1, wire_25_V0;
+	wire [31:0] wire_25_V1, wire_25_V0;
 	
 	decryptor_single_round tea_dec_25 (
 //		.clk(clk),
@@ -725,7 +723,7 @@ module full_decryptor(
 	assign wire_26_V1_t = flipper25[63:32];
 	
 // Round 26:
-	//wire [31:0] wire_26_V1, wire_26_V0;
+	wire [31:0] wire_26_V1, wire_26_V0;
 	
 	decryptor_single_round tea_dec_26 (
 //		.clk(clk),
@@ -753,7 +751,7 @@ module full_decryptor(
 	assign wire_27_V1_t = flipper26[63:32];
 	
 // Round 27:
-	//wire [31:0] wire_27_V1, wire_27_V0;
+	wire [31:0] wire_27_V1, wire_27_V0;
 	
 	decryptor_single_round tea_dec_27 (
 //		.clk(clk),
@@ -781,7 +779,7 @@ module full_decryptor(
 	assign wire_28_V1_t = flipper27[63:32];
 		
 // Round 28:
-	//wire [31:0] wire_28_V1, wire_28_V0;
+	wire [31:0] wire_28_V1, wire_28_V0;
 	
 	decryptor_single_round tea_dec_28 (
 //		.clk(clk),
@@ -809,7 +807,7 @@ module full_decryptor(
 	assign wire_29_V1_t = flipper28[63:32];
 	
 // Round 29:
-	//wire [31:0] wire_29_V1, wire_29_V0;
+	wire [31:0] wire_29_V1, wire_29_V0;
 	
 	decryptor_single_round tea_dec_29 (
 //		.clk(clk),
@@ -837,7 +835,7 @@ module full_decryptor(
 	assign wire_30_V1_t = flipper29[63:32];
 		
 // Round 30:
-	//wire [31:0] wire_30_V1, wire_30_V0;
+	wire [31:0] wire_30_V1, wire_30_V0;
 	
 	decryptor_single_round tea_dec_30 (
 //		.clk(clk),
@@ -865,7 +863,7 @@ module full_decryptor(
 	assign wire_31_V1_t = flipper30[63:32];
 	
 // Round 31:
-	//wire [31:0] wire_31_V1, wire_31_V0;
+	wire [31:0] wire_31_V1, wire_31_V0;
 	
 	decryptor_single_round tea_dec_31 (
 //		.clk(clk),
@@ -898,6 +896,8 @@ module full_decryptor(
  * Output goes on the output of parent module.
  * This is the processed 64 bit block.
  */
+	wire [31:0] wire_32_V1, wire_32_V0;
+	
 	decryptor_single_round tea_dec_32 (
 //		.clk(clk),
 //		.encrypt(encrypt),
