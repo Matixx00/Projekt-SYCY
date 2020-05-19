@@ -18,6 +18,7 @@ module modulik(
 	);
 	
 	full_decryptor Dec1 (
+		.clk(clk),
 		.inBlock64(from_enc_to_dec),
 		.key(key),
 		.outBlock64(outBlock64)		
