@@ -1,5 +1,11 @@
-module full_decryptor(
-	input			clk, ena, rst,	// standard controlls
+/*
+ * Combinational decryptor
+ *
+ */
+
+
+module full_comb_decryptor(
+//	input			clk, ena, rst,	// standard controlls
 //					encrypt,		// should we encrypt?
 	input	[ 63:0]	inBlock64,		// a 64 bit block to process
 	input	[127:0]	key,			// key for en/decryption
@@ -34,32 +40,20 @@ module full_decryptor(
 	);
 
 	
-// Trying to put a flip-flop between individual TEA modules:	
-	reg [63:0] flipper1;	//
-	always@(posedge clk) begin
-		flipper1 <= {wire_1_V1, wire_1_V0};
-	end
-
-	wire [31:0] wire_2_V0_t, wire_2_V1_t;
-
-	assign wire_2_V0_t = flipper1[31: 0];
-	assign wire_2_V1_t = flipper1[63:32];
-// ---------------------------------------------------------
-	
 	
 /*
  * 2nd round of TEA.
  * Input is from previous round on the previous wire.
  * Output is on new wire for the following round.
  */
-//	wire [31:0] wire_2_V0, wire_2_V1;
+	wire [31:0] wire_2_V0, wire_2_V1;
 	
 	decryptor_single_round tea_dec_2 (
 //		.clk(clk),
 //		.encrypt(encrypt),
 		.key(key),
-		.inV0(wire_2_V0_t),
-		.inV1(wire_2_V1_t),
+		.inV0(wire_1_V0),
+		.inV1(wire_1_V1),
 		.sum (
 //			encrypt ? 32'h3c6e_f372	//DELTA*2
 //					: 32'h28b7_bd67	//

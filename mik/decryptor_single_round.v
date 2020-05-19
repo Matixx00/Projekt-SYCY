@@ -1,5 +1,4 @@
 module decryptor_single_round (
-//	input			clk,
 	input	[127:0]	key,
 	input	[ 31:0]	inV0,
 					inV1,
