@@ -41,8 +41,8 @@ module full_sync_decryptor(
 	
 	decryptor_single_round tea_dec_1 (
 		.key(key),
-		.inV0(flipper1[31: 0]),
-		.inV1(flipper1[63:32]),
+		.inV0(flipper1[63:32]),
+		.inV1(flipper1[31:0]),
 		.sum(DELTA*32),
 		.outputV0(wire_1_V0),
 		.outputV1(wire_1_V1)
@@ -766,11 +766,9 @@ module full_sync_decryptor(
 		if (rst)
 			flipperLast <= 1'b0;
 		else if (clk)
-			flipperLast <= {wire_32_V1, wire_32_V0};	// from above
+			flipperLast <= {wire_32_V0, wire_32_V1};	// from above
 	end
 
 	assign outBlock64 = flipperLast;
 
-
-	
 endmodule
