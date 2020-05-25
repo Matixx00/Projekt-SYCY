@@ -157,7 +157,7 @@ if __name__ == "__main__":
     # d = decrypt(second, first, key)
     # print(hex(d[0]), hex(d[1]))
 
-    f = ["(encrypted)random_pdf.pdf",
+    f = ["cyber_napis.pdf",
          # "wersja1.1_zaszyfrowana.pdf",
          # "wersja1.2_zaszyfrowana(1).pdf",
          # "wersja1.2_zaszyfrowana(2).pdf",
@@ -180,5 +180,5 @@ if __name__ == "__main__":
     while i >= 0:
         input = f[i]
         output = "decrypted/(decrypted)" + f[i]
-        # read(input, output, 'Hulk is the best', "decrypt")
+        read(input, output, 'Hulk is the best', "encrypt")
         i -= 1
