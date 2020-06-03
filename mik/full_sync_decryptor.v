@@ -7,7 +7,6 @@
 
 module full_sync_decryptor(
 	input			clk, ena, rst,	// standard controlls
-//					encrypt,		// should we encrypt?
 	input	[ 63:0]	inBlock64,		// a 64 bit block to process
 	input	[127:0]	key,			// key for en/decryption
 	
