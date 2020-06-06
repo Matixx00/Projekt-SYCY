@@ -13,9 +13,9 @@ module key_breaker (
 	reg [127:0] key_reg, key_next;
 	always@(posedge clk or posedge rst) begin
 		if (rst)
-			flipper1 <= 1'b0;
+			key_reg <= 1'b0;
 		else if (ena)
-			flipper1 <= inBlock64;	// plug input wire into flip-flop
+			key_reg <= header;	// plug input wire into flip-flop
 	end
 
 	full_sync_decryptor decryptor (
