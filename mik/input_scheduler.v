@@ -1,7 +1,7 @@
 /*
  * by SYCY_Proj_3
  *
- * Scheduler for several parallel TEA synchronnized decryptors
+ * Scheduler for several parallel synchronized TEA decryptors
  *
  *
  */
