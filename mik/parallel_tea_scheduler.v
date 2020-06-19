@@ -22,6 +22,14 @@ module parallel_tea_scheduler (
  * MP: Bo zasłużył.
  * KK: (...)
  * MP: On już wie, dlaczego.
+ * KK: A, OK. W takim razie już wstawiam.
+ * MP: Dziękuję bardzo.
+ * KK: Nie ma za co :)
+ * MP: Ależ jest, naprawdę :)
+ * KK: Ależ nie ma o czym mówić :D
+ * MP: Jeszcze raz - dziękuję <3
+ * KK: Cała przyjemność po mojej stronie <3
+ * MP: 8)
  *
  */
 
