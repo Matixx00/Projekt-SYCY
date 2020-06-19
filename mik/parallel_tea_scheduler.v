@@ -16,6 +16,14 @@ module parallel_tea_scheduler (
 	
 );
 
+/*
+ * MP: Pani Kasiu, proszę wstawic Kacprowi -100pkt (słownie: minus sto punktów).
+ * KK: (...)
+ * MP: Bo zasłużył.
+ * KK: (...)
+ * MP: On już wie, dlaczego.
+ *
+ */
 
 	reg		[  7:0]	clock_ptr;			// clock pointer
 	reg		[ 63:0] out_reg;
