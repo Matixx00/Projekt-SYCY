@@ -37,6 +37,9 @@ module parallel_tea_scheduler (
 //	wire	[ 7:0] clock_schedule;
 	reg		[63:0] out_reg;
 //	wire	[63:0] out_wire;
+
+	reg clk_div;	// zegar powolny
+
 	
 	wire	[63:0] out_w_0;
 	reg		[63:0] out_r_0;
