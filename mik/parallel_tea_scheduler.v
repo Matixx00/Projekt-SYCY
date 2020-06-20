@@ -34,9 +34,9 @@ module parallel_tea_scheduler (
  */
 
 	reg		[ 7:0] clock_ptr;			// clock pointer
-	wire	[ 7:0] clock_schedule;
+//	wire	[ 7:0] clock_schedule;
 	reg		[63:0] out_reg;
-	wire	[63:0] out_wire;
+//	wire	[63:0] out_wire;
 	
 	wire	[63:0] out_w_0;
 	reg		[63:0] out_r_0;
@@ -56,14 +56,22 @@ module parallel_tea_scheduler (
 	reg		[63:0] out_r_7;
 	
 	
-	assign clock_schedule = clock_ptr | 8*{clk};
-	assign outBlock64 = out_w_0 & 64*{clock_ptr[0]};
+//	assign clock_schedule = clock_ptr | 8*{clk};
+//	assign outBlock64 = out_w_0 & 64*{clock_ptr[0]};
 	
+	always@(negedge clk or posedge rst) begin
+		// this is a 8-bit wide reg with a '1' in only one place
+		// this '1' is rotated left by 1 with each clock cycle
+		// it points to the TEA block receiving input and supplying output
+		if (rst)
+			clock_ptr	<= 1;
+		else if (ena)
+			clock_ptr <= {clock_ptr[6:0], clock_ptr[7]};		// rotate left one bit
+			
+	end
 	
 	always@(posedge clk or posedge rst) begin
 		if (rst) begin
-			clock_ptr	<= 1;
-			
 			out_r_0		<= 0;
 			out_r_1		<= 0;
 			out_r_2		<= 0;
@@ -76,21 +84,17 @@ module parallel_tea_scheduler (
 			out_reg		<= 0;
 		end
 		else if (ena) begin
-		// this is a 8-bit wide reg with a '1' in only one place
-		// this '1' is rotated left by 1 with each clock cycle
-		// it points to the TEA block receiving input and supplying output
-			clock_ptr <= {clock_ptr[6:0], clock_ptr[7]};		// rotate left one bit
-			
-			out_r_0 <= out_w_0 & 64*{clock_ptr[0]};
-			out_r_1 <= out_w_1 & 64*{clock_ptr[1]};
-			out_r_2 <= out_w_2 & 64*{clock_ptr[2]};
-			out_r_3 <= out_w_3 & 64*{clock_ptr[3]};
-			out_r_4 <= out_w_4 & 64*{clock_ptr[4]};
-			out_r_5 <= out_w_5 & 64*{clock_ptr[5]};
-			out_r_6 <= out_w_6 & 64*{clock_ptr[6]};
-			out_r_7 <= out_w_7 & 64*{clock_ptr[7]};
+			out_r_0 <= out_w_0 & {64{clock_ptr[0]}};
+			out_r_1 <= out_w_1 & {64{clock_ptr[1]}};
+			out_r_2 <= out_w_2 & {64{clock_ptr[2]}};
+			out_r_3 <= out_w_3 & {64{clock_ptr[3]}};
+			out_r_4 <= out_w_4 & {64{clock_ptr[4]}};
+			out_r_5 <= out_w_5 & {64{clock_ptr[5]}};
+			out_r_6 <= out_w_6 & {64{clock_ptr[6]}};
+			out_r_7 <= out_w_7 & {64{clock_ptr[7]}};
 			
 			out_reg <= out_r_0 | out_r_1 | out_r_2 | out_r_3 | out_r_4 | out_r_5 | out_r_6 | out_r_7;
+
 		end
 	end // always
 	
@@ -107,7 +111,7 @@ module parallel_tea_scheduler (
 	
 	
 	
-//	assign outBlock64 = out_reg;
+	assign outBlock64 = out_reg;
 	
 	
 	
