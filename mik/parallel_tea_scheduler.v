@@ -33,8 +33,10 @@ module parallel_tea_scheduler (
  *
  */
 
-	reg		[  7:0]	clock_ptr;			// clock pointer
-	reg		[ 63:0] out_reg;
+	reg		[ 7:0] clock_ptr;			// clock pointer
+	wire	[ 7:0] clock_schedule;
+	reg		[63:0] out_reg;
+	wire	[63:0] out_wire;
 	
 	wire	[63:0] out_w_0;
 	reg		[63:0] out_r_0;
@@ -52,6 +54,10 @@ module parallel_tea_scheduler (
 	reg		[63:0] out_r_6;
 	wire	[63:0] out_w_7;
 	reg		[63:0] out_r_7;
+	
+	
+	assign clock_schedule = clock_ptr | 8*{clk};
+	assign outBlock64 = out_w_0 & 64*{clock_ptr[0]};
 	
 	
 	always@(posedge clk or posedge rst) begin
@@ -101,7 +107,7 @@ module parallel_tea_scheduler (
 	
 	
 	
-	assign outBlock64 = out_reg;
+//	assign outBlock64 = out_reg;
 	
 	
 	
