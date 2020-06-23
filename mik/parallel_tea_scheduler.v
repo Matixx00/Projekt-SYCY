@@ -17,7 +17,7 @@ module parallel_tea_scheduler (
 );
 
 /*
- * MP: Pani Kasiu, proszę wstawic Kacprowi -100pkt (słownie: minus sto punktów).
+ * MP: Pani Kasiu, proszę wstawić Kacprowi -100pkt (słownie: minus sto punktów).
  * KK: (...)
  * MP: Bo zasłużył.
  * KK: (...)
@@ -33,30 +33,31 @@ module parallel_tea_scheduler (
  *
  */
 
-	reg		[ 7:0] clock_ptr;			// clock pointer
+	reg		[ 7:0] clock_ptr;			// clock pointer - clk signal distribution for parallel TEA instances
+	reg		[ 7:0] instance_ptr;		// instance pointer - indicates TEA instance currently returning output
 //	wire	[ 7:0] clock_schedule;
-	reg		[63:0] out_reg;
+//	reg		[63:0] out_reg;
 //	wire	[63:0] out_wire;
 
-	reg clk_div;	// zegar powolny
+//	reg clk_div;	// zegar powolny
 
 	
 	wire	[63:0] out_w_0;
-	reg		[63:0] out_r_0;
+//	reg		[63:0] out_r_0;
 	wire	[63:0] out_w_1;
-	reg		[63:0] out_r_1;
+//	reg		[63:0] out_r_1;
 	wire	[63:0] out_w_2;
-	reg		[63:0] out_r_2;
+//	reg		[63:0] out_r_2;
 	wire	[63:0] out_w_3;
-	reg		[63:0] out_r_3;
+//	reg		[63:0] out_r_3;
 	wire	[63:0] out_w_4;
-	reg		[63:0] out_r_4;
+//	reg		[63:0] out_r_4;
 	wire	[63:0] out_w_5;
-	reg		[63:0] out_r_5;
+//	reg		[63:0] out_r_5;
 	wire	[63:0] out_w_6;
-	reg		[63:0] out_r_6;
+//	reg		[63:0] out_r_6;
 	wire	[63:0] out_w_7;
-	reg		[63:0] out_r_7;
+//	reg		[63:0] out_r_7;
 	
 	
 //	assign clock_schedule = clock_ptr | 8*{clk};
@@ -66,13 +67,17 @@ module parallel_tea_scheduler (
 		// this is a 8-bit wide reg with a '1' in only one place
 		// this '1' is rotated left by 1 with each clock cycle
 		// it points to the TEA block receiving input and supplying output
-		if (rst)
-			clock_ptr	<= 1;
-		else if (ena)
-			clock_ptr <= {clock_ptr[6:0], clock_ptr[7]};		// rotate left one bit
+		if (rst) begin
+			clock_ptr		<= 8'b00001111;
+			instance_ptr	<= 8'b00001000;
+		end
+		else if (ena) begin
+			clock_ptr <= {clock_ptr[6:0], clock_ptr[7]};			// rotate left one bit
+			instance_ptr <= {instance_ptr[6:0], instance_ptr[7]};	// rotate left one bit
+		end
 			
 	end
-	
+/*	
 	always@(posedge clk or posedge rst) begin
 		if (rst) begin
 			out_r_0		<= 0;
@@ -100,7 +105,7 @@ module parallel_tea_scheduler (
 
 		end
 	end // always
-	
+	*/
 //	always@(*) begin
 //		out_r_0 = out_w_0 & clock_ptr[0];
 //		out_r_1 = out_w_1 & clock_ptr[1];
@@ -112,9 +117,17 @@ module parallel_tea_scheduler (
 //		out_r_7 = out_w_7 & clock_ptr[7];
 //	end
 	
+	assign outBlock64 = (out_w_0 & {64{clock_ptr[0]}}) |
+						(out_w_1 & {64{clock_ptr[1]}}) |
+						(out_w_2 & {64{clock_ptr[2]}}) |
+						(out_w_3 & {64{clock_ptr[3]}}) |
+						(out_w_4 & {64{clock_ptr[4]}}) |
+						(out_w_5 & {64{clock_ptr[5]}}) |
+						(out_w_6 & {64{clock_ptr[6]}}) |
+						(out_w_7 & {64{clock_ptr[7]}});
+
 	
-	
-	assign outBlock64 = out_reg;
+//	assign outBlock64 = out_reg;
 	
 	
 	
