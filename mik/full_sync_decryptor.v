@@ -28,7 +28,7 @@ module full_sync_decryptor(
 	reg [63:0] flipper1;	//
 	always@(posedge clk, posedge rst) begin
 		if (rst)
-			flipper1 <= 1'b0;
+			flipper1 <= 64'b0;
 		else if (clk)
 			flipper1 <= inBlock64;	// plug input wire into flip-flop
 	end
@@ -52,7 +52,7 @@ module full_sync_decryptor(
 	reg [63:0] flipper2;
 	always@(posedge clk, posedge rst) begin
 		if (rst)
-			flipper2 <= 1'b0;
+			flipper2 <= 64'b0;
 		else if (clk)
 			flipper2 <= {wire_1_V1, wire_1_V0};	// from above
 	end
@@ -78,7 +78,7 @@ module full_sync_decryptor(
 	reg [63:0] flipper3;
 	always@(posedge clk, posedge rst) begin
 		if (rst)
-			flipper3 <= 1'b0;
+			flipper3 <= 64'b0;
 		else if (clk)
 			flipper3 <= {wire_2_V1, wire_2_V0};	// from above
 	end
@@ -101,7 +101,7 @@ module full_sync_decryptor(
 	reg [63:0] flipper4;
 	always@(posedge clk, posedge rst) begin
 		if (rst)
-			flipper4 <= 1'b0;
+			flipper4 <= 64'b0;
 		else if (clk)
 			flipper4 <= {wire_3_V1, wire_3_V0};	// from above
 	end
@@ -124,7 +124,7 @@ module full_sync_decryptor(
 	reg [63:0] flipper5;
 	always@(posedge clk, posedge rst) begin
 		if (rst)
-			flipper5 <= 1'b0;
+			flipper5 <= 64'b0;
 		else if (clk)
 			flipper5 <= {wire_4_V1, wire_4_V0};	// from above
 	end
@@ -147,7 +147,7 @@ module full_sync_decryptor(
 	reg [63:0] flipper6;
 	always@(posedge clk, posedge rst) begin
 		if (rst)
-			flipper6 <= 1'b0;
+			flipper6 <= 64'b0;
 		else if (clk)
 			flipper6 <= {wire_5_V1, wire_5_V0};	// from above
 	end
@@ -169,7 +169,7 @@ module full_sync_decryptor(
 	reg [63:0] flipper7;
 	always@(posedge clk, posedge rst) begin
 		if (rst)
-			flipper7 <= 1'b0;
+			flipper7 <= 64'b0;
 		else if (clk)
 			flipper7 <= {wire_6_V1, wire_6_V0};	// from above
 	end
@@ -191,7 +191,7 @@ module full_sync_decryptor(
 	reg [63:0] flipper8;
 	always@(posedge clk, posedge rst) begin
 		if (rst)
-			flipper8 <= 1'b0;
+			flipper8 <= 64'b0;
 		else if (clk)
 			flipper8 <= {wire_7_V1, wire_7_V0};	// from above
 	end
@@ -213,7 +213,7 @@ module full_sync_decryptor(
 	reg [63:0] flipper9;
 	always@(posedge clk, posedge rst) begin
 		if (rst)
-			flipper9 <= 1'b0;
+			flipper9 <= 64'b0;
 		else if (clk)
 			flipper9 <= {wire_8_V1, wire_8_V0};	// from above
 	end
@@ -235,7 +235,7 @@ module full_sync_decryptor(
 	reg [63:0] flipper10;
 	always@(posedge clk, posedge rst) begin
 		if (rst)
-			flipper10 <= 1'b0;
+			flipper10 <= 64'b0;
 		else if (clk)
 			flipper10 <= {wire_9_V1, wire_9_V0};	// from above
 	end
@@ -257,7 +257,7 @@ module full_sync_decryptor(
 	reg [63:0] flipper11;
 	always@(posedge clk, posedge rst) begin
 		if (rst)
-			flipper11 <= 1'b0;
+			flipper11 <= 64'b0;
 		else if (clk)
 			flipper11 <= {wire_10_V1, wire_10_V0};	// from above
 	end
@@ -280,7 +280,7 @@ module full_sync_decryptor(
 	reg [63:0] flipper12;
 	always@(posedge clk, posedge rst) begin
 		if (rst)
-			flipper12 <= 1'b0;
+			flipper12 <= 64'b0;
 		else if (clk)
 			flipper12 <= {wire_11_V1, wire_11_V0};	// from above
 	end
@@ -303,7 +303,7 @@ module full_sync_decryptor(
 	reg [63:0] flipper13;
 	always@(posedge clk, posedge rst) begin
 		if (rst)
-			flipper13 <= 1'b0;
+			flipper13 <= 64'b0;
 		else if (clk)
 			flipper13 <= {wire_12_V1, wire_12_V0};	// from above
 	end
@@ -326,7 +326,7 @@ module full_sync_decryptor(
 	reg [63:0] flipper14;
 	always@(posedge clk, posedge rst) begin
 		if (rst)
-			flipper14 <= 1'b0;
+			flipper14 <= 64'b0;
 		else if (clk)
 			flipper14 <= {wire_13_V1, wire_13_V0};	// from above
 	end
@@ -348,7 +348,7 @@ module full_sync_decryptor(
 	reg [63:0] flipper15;
 	always@(posedge clk, posedge rst) begin
 		if (rst)
-			flipper15 <= 1'b0;
+			flipper15 <= 64'b0;
 		else if (clk)
 			flipper15 <= {wire_14_V1, wire_14_V0};	// from above
 	end
@@ -371,7 +371,7 @@ module full_sync_decryptor(
 	reg [63:0] flipper16;
 	always@(posedge clk, posedge rst) begin
 		if (rst)
-			flipper16 <= 1'b0;
+			flipper16 <= 64'b0;
 		else if (clk)
 			flipper16 <= {wire_15_V1, wire_15_V0};	// from above
 	end
@@ -393,7 +393,7 @@ module full_sync_decryptor(
 	reg [63:0] flipper17;
 	always@(posedge clk, posedge rst) begin
 		if (rst)
-			flipper17 <= 1'b0;
+			flipper17 <= 64'b0;
 		else if (clk)
 			flipper17 <= {wire_16_V1, wire_16_V0};	// from above
 	end
@@ -416,7 +416,7 @@ module full_sync_decryptor(
 	reg [63:0] flipper18;
 	always@(posedge clk, posedge rst) begin
 		if (rst)
-			flipper18 <= 1'b0;
+			flipper18 <= 64'b0;
 		else if (clk)
 			flipper18 <= {wire_17_V1, wire_17_V0};	// from above
 	end
@@ -438,7 +438,7 @@ module full_sync_decryptor(
 	reg [63:0] flipper19;
 	always@(posedge clk, posedge rst) begin
 		if (rst)
-			flipper19 <= 1'b0;
+			flipper19 <= 64'b0;
 		else if (clk)
 			flipper19 <= {wire_18_V1, wire_18_V0};	// from above
 	end
@@ -460,7 +460,7 @@ module full_sync_decryptor(
 	reg [63:0] flipper20;
 	always@(posedge clk, posedge rst) begin
 		if (rst)
-			flipper20 <= 1'b0;
+			flipper20 <= 64'b0;
 		else if (clk)
 			flipper20 <= {wire_19_V1, wire_19_V0};	// from above
 	end
@@ -483,7 +483,7 @@ module full_sync_decryptor(
 	reg [63:0] flipper21;
 	always@(posedge clk, posedge rst) begin
 		if (rst)
-			flipper21 <= 1'b0;
+			flipper21 <= 64'b0;
 		else if (clk)
 			flipper21 <= {wire_20_V1, wire_20_V0};	// from above
 	end
@@ -506,7 +506,7 @@ module full_sync_decryptor(
 	reg [63:0] flipper22;
 	always@(posedge clk, posedge rst) begin
 		if (rst)
-			flipper22 <= 1'b0;
+			flipper22 <= 64'b0;
 		else if (clk)
 			flipper22 <= {wire_21_V1, wire_21_V0};	// from above
 	end
@@ -529,7 +529,7 @@ module full_sync_decryptor(
 	reg [63:0] flipper23;
 	always@(posedge clk, posedge rst) begin
 		if (rst)
-			flipper23 <= 1'b0;
+			flipper23 <= 64'b0;
 		else if (clk)
 			flipper23 <= {wire_22_V1, wire_22_V0};	// from above
 	end
@@ -552,7 +552,7 @@ module full_sync_decryptor(
 	reg [63:0] flipper24;
 	always@(posedge clk, posedge rst) begin
 		if (rst)
-			flipper24 <= 1'b0;
+			flipper24 <= 64'b0;
 		else if (clk)
 			flipper24 <= {wire_23_V1, wire_23_V0};	// from above
 	end
@@ -575,7 +575,7 @@ module full_sync_decryptor(
 	reg [63:0] flipper25;
 	always@(posedge clk, posedge rst) begin
 		if (rst)
-			flipper25 <= 1'b0;
+			flipper25 <= 64'b0;
 		else if (clk)
 			flipper25 <= {wire_24_V1, wire_24_V0};	// from above
 	end
@@ -598,7 +598,7 @@ module full_sync_decryptor(
 	reg [63:0] flipper26;
 	always@(posedge clk, posedge rst) begin
 		if (rst)
-			flipper26 <= 1'b0;
+			flipper26 <= 64'b0;
 		else if (clk)
 			flipper26 <= {wire_25_V1, wire_25_V0};	// from above
 	end
@@ -621,7 +621,7 @@ module full_sync_decryptor(
 	reg [63:0] flipper27;
 	always@(posedge clk, posedge rst) begin
 		if (rst)
-			flipper27 <= 1'b0;
+			flipper27 <= 64'b0;
 		else if (clk)
 			flipper27 <= {wire_26_V1, wire_26_V0};	// from above
 	end
@@ -644,7 +644,7 @@ module full_sync_decryptor(
 	reg [63:0] flipper28;
 	always@(posedge clk, posedge rst) begin
 		if (rst)
-			flipper28 <= 1'b0;
+			flipper28 <= 64'b0;
 		else if (clk)
 			flipper28 <= {wire_27_V1, wire_27_V0};	// from above
 	end
@@ -667,7 +667,7 @@ module full_sync_decryptor(
 	reg [63:0] flipper29;
 	always@(posedge clk, posedge rst) begin
 		if (rst)
-			flipper29 <= 1'b0;
+			flipper29 <= 64'b0;
 		else if (clk)
 			flipper29 <= {wire_28_V1, wire_28_V0};	// from above
 	end
@@ -690,7 +690,7 @@ module full_sync_decryptor(
 	reg [63:0] flipper30;
 	always@(posedge clk, posedge rst) begin
 		if (rst)
-			flipper30 <= 1'b0;
+			flipper30 <= 64'b0;
 		else if (clk)
 			flipper30 <= {wire_29_V1, wire_29_V0};	// from above
 	end
@@ -713,7 +713,7 @@ module full_sync_decryptor(
 	reg [63:0] flipper31;
 	always@(posedge clk, posedge rst) begin
 		if (rst)
-			flipper31 <= 1'b0;
+			flipper31 <= 64'b0;
 		else if (clk)
 			flipper31 <= {wire_30_V1, wire_30_V0};	// from above
 	end
@@ -736,7 +736,7 @@ module full_sync_decryptor(
 	reg [63:0] flipper32;
 	always@(posedge clk, posedge rst) begin
 		if (rst)
-			flipper32 <= 1'b0;
+			flipper32 <= 64'b0;
 		else if (clk)
 			flipper32 <= {wire_31_V1, wire_31_V0};	// from above
 	end
@@ -764,7 +764,7 @@ module full_sync_decryptor(
 	reg [63:0] flipperLast;
 	always@(posedge clk, posedge rst) begin
 		if (rst)
-			flipperLast <= 1'b0;
+			flipperLast <= 64'b0;
 		else if (clk)
 			flipperLast <= {wire_32_V1, wire_32_V0};	// from above
 	end
