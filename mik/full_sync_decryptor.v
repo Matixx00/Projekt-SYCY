@@ -40,6 +40,7 @@ module full_sync_decryptor(
 	wire [31:0] wire_1_V0, wire_1_V1;
 	
 	decryptor_single_round tea_dec_1 (
+//		.clk		(clk),
 		.key(key),
 		.inV0(flipper1[31: 0]),
 		.inV1(flipper1[63:32]),
@@ -67,6 +68,7 @@ module full_sync_decryptor(
 	wire [31:0] wire_2_V0, wire_2_V1;
 	
 	decryptor_single_round tea_dec_2 (
+//		.clk		(clk),
 		.key(key),
 		.inV0(flipper2[31: 0]),
 		.inV1(flipper2[63:32]),
@@ -90,6 +92,7 @@ module full_sync_decryptor(
 	wire [31:0] wire_3_V1, wire_3_V0;
 	
 	decryptor_single_round tea_dec_3 (
+//		.clk		(clk),
 		.key(key),
 		.inV0(flipper3[31: 0]),
 		.inV1(flipper3[63:32]),
@@ -113,6 +116,7 @@ module full_sync_decryptor(
 	wire [31:0] wire_4_V1, wire_4_V0;
 	
 	decryptor_single_round tea_dec_4 (
+//		.clk		(clk),
 		.key(key),
 		.inV0(flipper4[31: 0]),
 		.inV1(flipper4[63:32]),
@@ -136,6 +140,7 @@ module full_sync_decryptor(
 	wire [31:0] wire_5_V1, wire_5_V0;
 	
 	decryptor_single_round tea_dec_5 (
+//		.clk		(clk),
 		.key(key),
 		.inV0(flipper5[31: 0]),
 		.inV1(flipper5[63:32]),
@@ -158,6 +163,7 @@ module full_sync_decryptor(
 	wire [31:0] wire_6_V1, wire_6_V0;
 	
 	decryptor_single_round tea_dec_6 (
+//		.clk		(clk),
 		.key(key),
 		.inV0(flipper6[31: 0]),
 		.inV1(flipper6[63:32]),
@@ -180,6 +186,7 @@ module full_sync_decryptor(
 	wire [31:0] wire_7_V1, wire_7_V0;
 	
 	decryptor_single_round tea_dec_7 (
+//		.clk		(clk),
 		.key(key),
 		.inV0(flipper7[31: 0]),
 		.inV1(flipper7[63:32]),
@@ -202,6 +209,7 @@ module full_sync_decryptor(
 	wire [31:0] wire_8_V1, wire_8_V0;
 	
 	decryptor_single_round tea_dec_8 (
+//		.clk		(clk),
 		.key(key),
 		.inV0(flipper8[31: 0]),
 		.inV1(flipper8[63:32]),
@@ -224,6 +232,7 @@ module full_sync_decryptor(
 	wire [31:0] wire_9_V1, wire_9_V0;
 	
 	decryptor_single_round tea_dec_9 (
+//		.clk		(clk),
 		.key(key),
 		.inV0(flipper9[31: 0]),
 		.inV1(flipper9[63:32]),
@@ -246,6 +255,7 @@ module full_sync_decryptor(
 	wire [31:0] wire_10_V1, wire_10_V0;
 	
 	decryptor_single_round tea_dec_10 (
+//		.clk		(clk),
 		.key(key),
 		.inV0(flipper10[31: 0]),
 		.inV1(flipper10[63:32]),
@@ -269,6 +279,7 @@ module full_sync_decryptor(
 	wire [31:0] wire_11_V1, wire_11_V0;
 	
 	decryptor_single_round tea_dec_11 (
+//		.clk		(clk),
 		.key(key),
 		.inV0(flipper11[31: 0]),
 		.inV1(flipper11[63:32]),
@@ -292,6 +303,7 @@ module full_sync_decryptor(
 	wire [31:0] wire_12_V1, wire_12_V0;
 	
 	decryptor_single_round tea_dec_12 (
+//		.clk		(clk),
 		.key(key),
 		.inV0(flipper12[31: 0]),
 		.inV1(flipper12[63:32]),
@@ -315,6 +327,7 @@ module full_sync_decryptor(
 	wire [31:0] wire_13_V1, wire_13_V0;
 	
 	decryptor_single_round tea_dec_13 (
+//		.clk		(clk),
 		.key(key),
 		.inV0(flipper13[31: 0]),
 		.inV1(flipper13[63:32]),
@@ -337,6 +350,7 @@ module full_sync_decryptor(
 	wire [31:0] wire_14_V1, wire_14_V0;
 	
 	decryptor_single_round tea_dec_14 (
+//		.clk		(clk),
 		.key(key),
 		.inV0(flipper14[31: 0]),
 		.inV1(flipper14[63:32]),
@@ -360,6 +374,7 @@ module full_sync_decryptor(
 	wire [31:0] wire_15_V1, wire_15_V0;
 	
 	decryptor_single_round tea_dec_15 (
+//		.clk		(clk),
 		.key(key),
 		.inV0(flipper15[31: 0]),
 		.inV1(flipper15[63:32]),
@@ -382,6 +397,7 @@ module full_sync_decryptor(
 	wire [31:0] wire_16_V1, wire_16_V0;
 	
 	decryptor_single_round tea_dec_16 (
+//		.clk		(clk),
 		.key(key),
 		.inV0(flipper16[31: 0]),
 		.inV1(flipper16[63:32]),
@@ -405,6 +421,7 @@ module full_sync_decryptor(
 	wire [31:0] wire_17_V1, wire_17_V0;
 	
 	decryptor_single_round tea_dec_17 (
+//		.clk		(clk),
 		.key(key),
 		.inV0(flipper17[31: 0]),
 		.inV1(flipper17[63:32]),
@@ -427,6 +444,7 @@ module full_sync_decryptor(
 	wire [31:0] wire_18_V1, wire_18_V0;
 	
 	decryptor_single_round tea_dec_18 (
+//		.clk		(clk),
 		.key(key),
 		.inV0(flipper18[31: 0]),
 		.inV1(flipper18[63:32]),
@@ -449,6 +467,7 @@ module full_sync_decryptor(
 	wire [31:0] wire_19_V1, wire_19_V0;
 	
 	decryptor_single_round tea_dec_19 (
+//		.clk		(clk),
 		.key(key),
 		.inV0(flipper19[31: 0]),
 		.inV1(flipper19[63:32]),
@@ -472,6 +491,7 @@ module full_sync_decryptor(
 	wire [31:0] wire_20_V1, wire_20_V0;
 	
 	decryptor_single_round tea_dec_20 (
+//		.clk		(clk),
 		.key(key),
 		.inV0(flipper20[31: 0]),
 		.inV1(flipper20[63:32]),
@@ -495,6 +515,7 @@ module full_sync_decryptor(
 	wire [31:0] wire_21_V1, wire_21_V0;
 	
 	decryptor_single_round tea_dec_21 (
+//		.clk		(clk),
 		.key(key),
 		.inV0(flipper21[31: 0]),
 		.inV1(flipper21[63:32]),
@@ -518,6 +539,7 @@ module full_sync_decryptor(
 	wire [31:0] wire_22_V1, wire_22_V0;
 	
 	decryptor_single_round tea_dec_22 (
+//		.clk		(clk),
 		.key(key),
 		.inV0(flipper22[31: 0]),
 		.inV1(flipper22[63:32]),
@@ -541,6 +563,7 @@ module full_sync_decryptor(
 	wire [31:0] wire_23_V1, wire_23_V0;
 	
 	decryptor_single_round tea_dec_23 (
+//		.clk		(clk),
 		.key(key),
 		.inV0(flipper23[31: 0]),
 		.inV1(flipper23[63:32]),
@@ -564,6 +587,7 @@ module full_sync_decryptor(
 	wire [31:0] wire_24_V1, wire_24_V0;
 	
 	decryptor_single_round tea_dec_24 (
+//		.clk		(clk),
 		.key(key),
 		.inV0(flipper24[31: 0]),
 		.inV1(flipper24[63:32]),
@@ -587,6 +611,7 @@ module full_sync_decryptor(
 	wire [31:0] wire_25_V1, wire_25_V0;
 	
 	decryptor_single_round tea_dec_25 (
+//		.clk		(clk),
 		.key(key),
 		.inV0(flipper25[31: 0]),
 		.inV1(flipper25[63:32]),
@@ -610,6 +635,7 @@ module full_sync_decryptor(
 	wire [31:0] wire_26_V1, wire_26_V0;
 	
 	decryptor_single_round tea_dec_26 (
+//		.clk		(clk),
 		.key(key),
 		.inV0(flipper26[31: 0]),
 		.inV1(flipper26[63:32]),
@@ -633,6 +659,7 @@ module full_sync_decryptor(
 	wire [31:0] wire_27_V1, wire_27_V0;
 	
 	decryptor_single_round tea_dec_27 (
+//		.clk		(clk),
 		.key(key),
 		.inV0(flipper27[31: 0]),
 		.inV1(flipper27[63:32]),
@@ -656,6 +683,7 @@ module full_sync_decryptor(
 	wire [31:0] wire_28_V1, wire_28_V0;
 	
 	decryptor_single_round tea_dec_28 (
+//		.clk		(clk),
 		.key(key),
 		.inV0(flipper28[31: 0]),
 		.inV1(flipper28[63:32]),
@@ -679,6 +707,7 @@ module full_sync_decryptor(
 	wire [31:0] wire_29_V1, wire_29_V0;
 	
 	decryptor_single_round tea_dec_29 (
+//		.clk		(clk),
 		.key(key),
 		.inV0(flipper29[31: 0]),
 		.inV1(flipper29[63:32]),
@@ -702,6 +731,7 @@ module full_sync_decryptor(
 	wire [31:0] wire_30_V1, wire_30_V0;
 	
 	decryptor_single_round tea_dec_30 (
+//		.clk		(clk),
 		.key(key),
 		.inV0(flipper30[31: 0]),
 		.inV1(flipper30[63:32]),
@@ -725,6 +755,7 @@ module full_sync_decryptor(
 	wire [31:0] wire_31_V1, wire_31_V0;
 	
 	decryptor_single_round tea_dec_31 (
+//		.clk		(clk),
 		.key(key),
 		.inV0(flipper31[31: 0]),
 		.inV1(flipper31[63:32]),
@@ -753,6 +784,7 @@ module full_sync_decryptor(
 	wire [31:0] wire_32_V1, wire_32_V0;
 
 	decryptor_single_round tea_dec_32 (
+//		.clk		(clk),
 		.key(key),
 		.inV0(flipper32[31: 0]),
 		.inV1(flipper32[63:32]),
