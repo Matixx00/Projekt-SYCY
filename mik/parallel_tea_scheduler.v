@@ -33,7 +33,29 @@ module parallel_tea_scheduler (
  *
  */
 
-	reg		[ 7:0] clock_ptr;			// clock pointer - clk signal distribution for parallel TEA instances
+// ============================ Prepare slow clock for distribution:
+ 	wire 			slow_clk;
+	reg		[7:0]	clk_split;
+
+	clock_divider div0 (
+		.clk		(clk),
+		.ena		(ena),
+		.rst		(rst),
+		.div_clk	(slow_clk)
+	);
+	
+	always @ (posedge clk or posedge rst) begin
+		if (rst) begin
+			clk_split <= 8'b0;
+		end
+		else if (ena) begin
+			clk_split <= {clk_split[6:0], slow_clk};
+		end
+	end
+
+
+	
+//	reg		[ 7:0] clock_ptr;			// clock pointer - clk signal distribution for parallel TEA instances
 	reg		[ 7:0] instance_ptr;		// instance pointer - indicates TEA instance currently returning output
 //	wire	[ 7:0] clock_schedule;
 //	reg		[63:0] out_reg;
@@ -68,11 +90,11 @@ module parallel_tea_scheduler (
 		// this '1' is rotated left by 1 with each clock cycle
 		// it points to the TEA block receiving input and supplying output
 		if (rst) begin
-			clock_ptr		<= 8'b00001111;
+//			clock_ptr		<= 8'b00001111;
 			instance_ptr	<= 8'b00001000;
 		end
 		else if (ena) begin
-			clock_ptr <= {clock_ptr[6:0], clock_ptr[7]};			// rotate left one bit
+//			clock_ptr <= {clock_ptr[6:0], clock_ptr[7]};			// rotate left one bit
 			instance_ptr <= {instance_ptr[6:0], instance_ptr[7]};	// rotate left one bit
 		end
 			
@@ -117,14 +139,14 @@ module parallel_tea_scheduler (
 //		out_r_7 = out_w_7 & clock_ptr[7];
 //	end
 	
-	assign outBlock64 = (out_w_0 & {64{clock_ptr[0]}}) |
-						(out_w_1 & {64{clock_ptr[1]}}) |
-						(out_w_2 & {64{clock_ptr[2]}}) |
-						(out_w_3 & {64{clock_ptr[3]}}) |
-						(out_w_4 & {64{clock_ptr[4]}}) |
-						(out_w_5 & {64{clock_ptr[5]}}) |
-						(out_w_6 & {64{clock_ptr[6]}}) |
-						(out_w_7 & {64{clock_ptr[7]}});
+	assign outBlock64 = (out_w_0 & {64{instance_ptr[0]}}) |
+						(out_w_1 & {64{instance_ptr[1]}}) |
+						(out_w_2 & {64{instance_ptr[2]}}) |
+						(out_w_3 & {64{instance_ptr[3]}}) |
+						(out_w_4 & {64{instance_ptr[4]}}) |
+						(out_w_5 & {64{instance_ptr[5]}}) |
+						(out_w_6 & {64{instance_ptr[6]}}) |
+						(out_w_7 & {64{instance_ptr[7]}});
 
 	
 //	assign outBlock64 = out_reg;
@@ -133,82 +155,82 @@ module parallel_tea_scheduler (
 	
 // Parallel TEA instance 0:	
 	full_sync_decryptor full_tea_0 (
-		.clk(clk & clock_ptr[0]),
-		.ena(ena),
-		.rst(rst),
-		.inBlock64(inBlock64),
-		.key(key),
-		.outBlock64(out_w_0)
+		.clk		(clk_split[0]),
+		.ena		(ena),
+		.rst		(rst),
+		.inBlock64	(inBlock64),
+		.key		(key),
+		.outBlock64	(out_w_0)
 	);
 	
 // Parallel TEA instance 1:
 	full_sync_decryptor full_tea_1 (
-		.clk(clk & clock_ptr[1]),
-		.ena(ena),
-		.rst(rst),
-		.inBlock64(inBlock64),
-		.key(key),
-		.outBlock64(out_w_1)
+		.clk		(clk_split[1]),
+		.ena		(ena),
+		.rst		(rst),
+		.inBlock64	(inBlock64),
+		.key		(key),
+		.outBlock64	(out_w_1)
 	);
 
 // Parallel TEA instance 2:
 	full_sync_decryptor full_tea_2 (
-		.clk(clk & clock_ptr[2]),
-		.ena(ena),
-		.rst(rst),
-		.inBlock64(inBlock64),
-		.key(key),
-		.outBlock64(out_w_2)
+		.clk		(clk_split[2]),
+		.ena		(ena),
+		.rst		(rst),
+		.inBlock64	(inBlock64),
+		.key		(key),
+		.outBlock64	(out_w_2)
 	);
 	
 // Parallel TEA instance 3:
 	full_sync_decryptor full_tea_3 (
-		.clk(clk & clock_ptr[3]),
-		.ena(ena),
-		.rst(rst),
-		.inBlock64(inBlock64),
-		.key(key),
-		.outBlock64(out_w_3)
+		.clk		(clk_split[3]),
+		.ena		(ena),
+		.rst		(rst),
+		.inBlock64	(inBlock64),
+		.key		(key),
+		.outBlock64	(out_w_3)
 	);
 	
 // Parallel TEA instance 4:	
 	full_sync_decryptor full_tea_4 (
-		.clk(clk & clock_ptr[4]),
-		.ena(ena),
-		.rst(rst),
-		.inBlock64(inBlock64),
-		.key(key),
-		.outBlock64(out_w_4)
+		.clk		(clk_split[4]),
+		.ena		(ena),
+		.rst		(rst),
+		.inBlock64	(inBlock64),
+		.key		(key),
+		.outBlock64	(out_w_4)
 	);
 	
 // Parallel TEA instance 5:
 	full_sync_decryptor full_tea_5 (
-		.clk(clk & clock_ptr[5]),
-		.ena(ena),
-		.rst(rst),
-		.inBlock64(inBlock64),
-		.key(key),
-		.outBlock64(out_w_5)
+		.clk		(clk_split[5]),
+		.ena		(ena),
+		.rst		(rst),
+		.inBlock64	(inBlock64),
+		.key		(key),
+		.outBlock64	(out_w_5)
 	);
 
 // Parallel TEA instance 6:
 	full_sync_decryptor full_tea_6 (
-		.clk(clk & clock_ptr[6]),
-		.ena(ena),
-		.rst(rst),
-		.inBlock64(inBlock64),
-		.key(key),
-		.outBlock64(out_w_6)
+		.clk(clk_split[6]),
+		.ena		(ena),
+		.rst		(rst),
+		.inBlock64	(inBlock64),
+		.key		(key),
+		.outBlock64	(out_w_6)
 	);
 	
 // Parallel TEA instance 7:
 	full_sync_decryptor full_tea_7 (
-		.clk(clk & clock_ptr[7]),
-		.ena(ena),
-		.rst(rst),
-		.inBlock64(inBlock64),
-		.key(key),
-		.outBlock64(out_w_7)
+		.clk		(clk_split[7]),
+		.ena		(ena),
+		.rst		(rst),
+		.inBlock64	(inBlock64),
+		.key		(key),
+		.outBlock64	(out_w_7)
 	);
 
 
