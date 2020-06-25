@@ -5,7 +5,7 @@
 
 
 
-module full_sync_decryptor(
+module faster_sync_decryptor(
 	input			clk, ena, rst,	// standard controlls
 //					encrypt,		// should we encrypt?
 	input	[ 63:0]	inBlock64,		// a 64 bit block to process
