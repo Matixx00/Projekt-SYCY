@@ -82,7 +82,8 @@ module parallel_tea_scheduler (
 	
 	
 // Parallel TEA instance 0:	
-	full_sync_decryptor full_tea_0 (
+//	full_sync_decryptor full_tea_0 (
+	faster_sync_decryptor full_tea_0 (
 		.clk		(clock_ptr[0]),
 		.ena		(ena),
 		.rst		(rst),
@@ -92,7 +93,8 @@ module parallel_tea_scheduler (
 	);
 	
 // Parallel TEA instance 1:
-	full_sync_decryptor full_tea_1 (
+//	full_sync_decryptor full_tea_1 (
+	faster_sync_decryptor full_tea_1 (
 		.clk		(clock_ptr[1]),
 		.ena		(ena),
 		.rst		(rst),
@@ -102,7 +104,8 @@ module parallel_tea_scheduler (
 	);
 
 // Parallel TEA instance 2:
-	full_sync_decryptor full_tea_2 (
+//	full_sync_decryptor full_tea_2 (
+	faster_sync_decryptor full_tea_2 (
 		.clk		(clock_ptr[2]),
 		.ena		(ena),
 		.rst		(rst),
@@ -112,7 +115,8 @@ module parallel_tea_scheduler (
 	);
 	
 // Parallel TEA instance 3:
-	full_sync_decryptor full_tea_3 (
+//	full_sync_decryptor full_tea_3 (
+	faster_sync_decryptor full_tea_3 (
 		.clk		(clock_ptr[3]),
 		.ena		(ena),
 		.rst		(rst),
@@ -122,7 +126,8 @@ module parallel_tea_scheduler (
 	);
 	
 // Parallel TEA instance 4:	
-	full_sync_decryptor full_tea_4 (
+//	full_sync_decryptor full_tea_4 (
+	faster_sync_decryptor full_tea_4 (
 		.clk		(clock_ptr[4]),
 		.ena		(ena),
 		.rst		(rst),
@@ -132,7 +137,8 @@ module parallel_tea_scheduler (
 	);
 	
 // Parallel TEA instance 5:
-	full_sync_decryptor full_tea_5 (
+//	full_sync_decryptor full_tea_5 (
+	faster_sync_decryptor full_tea_5 (
 		.clk		(clock_ptr[5]),
 		.ena		(ena),
 		.rst		(rst),
@@ -142,7 +148,8 @@ module parallel_tea_scheduler (
 	);
 
 // Parallel TEA instance 6:
-	full_sync_decryptor full_tea_6 (
+//	full_sync_decryptor full_tea_6 (
+	faster_sync_decryptor full_tea_6 (
 		.clk		(clock_ptr[6]),
 		.ena		(ena),
 		.rst		(rst),
@@ -152,7 +159,8 @@ module parallel_tea_scheduler (
 	);
 	
 // Parallel TEA instance 7:
-	full_sync_decryptor full_tea_7 (
+//	full_sync_decryptor full_tea_7 (
+	faster_sync_decryptor full_tea_7 (
 		.clk		(clock_ptr[7]),
 		.ena		(ena),
 		.rst		(rst),
@@ -162,7 +170,8 @@ module parallel_tea_scheduler (
 	);
 
 // Parallel TEA instance 8:
-	full_sync_decryptor full_tea_8 (
+//	full_sync_decryptor full_tea_8 (
+	faster_sync_decryptor full_tea_8 (
 		.clk		(clock_ptr[8]),
 		.ena		(ena),
 		.rst		(rst),
@@ -172,7 +181,8 @@ module parallel_tea_scheduler (
 	);
 	
 // Parallel TEA instance 9:
-	full_sync_decryptor full_tea_9 (
+//	full_sync_decryptor full_tea_9 (
+	faster_sync_decryptor full_tea_9 (
 		.clk		(clock_ptr[9]),
 		.ena		(ena),
 		.rst		(rst),
