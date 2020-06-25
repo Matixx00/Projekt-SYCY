@@ -46,8 +46,8 @@ module parallel_tea_scheduler (
 	wire	[63:0] out_w_5;
 	wire	[63:0] out_w_6;
 	wire	[63:0] out_w_7;
-	wire	[63:0] out_w_8;
-	wire	[63:0] out_w_9;
+//	wire	[63:0] out_w_8;
+//	wire	[63:0] out_w_9;
 	
 	
 	
@@ -56,12 +56,12 @@ module parallel_tea_scheduler (
 		// this '1' is rotated left by 1 with each clock cycle
 		// it points to the TEA block receiving input and supplying output
 		if (rst) begin
-			clock_ptr		<= 10'b00_0001_1111;	// slow clock
-			instance_ptr	<= 10'b00_0000_1000;	// active instance
+			clock_ptr		<= 10'b0000_1111;	// slow clock
+			instance_ptr	<= 10'b0000_0100;	// active instance
 		end
 		else if (ena) begin
-			clock_ptr <= {clock_ptr[8:0], clock_ptr[9]};			// rotate left one bit
-			instance_ptr <= {instance_ptr[8:0], instance_ptr[9]};	// rotate left one bit
+			clock_ptr <= {clock_ptr[6:0], clock_ptr[7]};			// rotate left one bit
+			instance_ptr <= {instance_ptr[6:0], instance_ptr[7]};	// rotate left one bit
 		end
 			
 	end
@@ -73,9 +73,9 @@ module parallel_tea_scheduler (
 						(out_w_4 & {64{instance_ptr[4]}}) |
 						(out_w_5 & {64{instance_ptr[5]}}) |
 						(out_w_6 & {64{instance_ptr[6]}}) |
-						(out_w_7 & {64{instance_ptr[7]}}) |
-						(out_w_8 & {64{instance_ptr[8]}}) |
-						(out_w_9 & {64{instance_ptr[9]}});
+						(out_w_7 & {64{instance_ptr[7]}});
+//						(out_w_8 & {64{instance_ptr[8]}}) |
+//						(out_w_9 & {64{instance_ptr[9]}});
 
 	
 	
@@ -169,27 +169,27 @@ module parallel_tea_scheduler (
 		.outBlock64	(out_w_7)
 	);
 
-// Parallel TEA instance 8:
-//	full_sync_decryptor full_tea_8 (
-	faster_sync_decryptor full_tea_8 (
-		.clk		(clock_ptr[8]),
-		.ena		(ena),
-		.rst		(rst),
-		.inBlock64	(inBlock64),
-		.key		(key),
-		.outBlock64	(out_w_8)
-	);
-	
-// Parallel TEA instance 9:
-//	full_sync_decryptor full_tea_9 (
-	faster_sync_decryptor full_tea_9 (
-		.clk		(clock_ptr[9]),
-		.ena		(ena),
-		.rst		(rst),
-		.inBlock64	(inBlock64),
-		.key		(key),
-		.outBlock64	(out_w_9)
-	);
+//// Parallel TEA instance 8:
+////	full_sync_decryptor full_tea_8 (
+//	faster_sync_decryptor full_tea_8 (
+//		.clk		(clock_ptr[8]),
+//		.ena		(ena),
+//		.rst		(rst),
+//		.inBlock64	(inBlock64),
+//		.key		(key),
+//		.outBlock64	(out_w_8)
+//	);
+//	
+//// Parallel TEA instance 9:
+////	full_sync_decryptor full_tea_9 (
+//	faster_sync_decryptor full_tea_9 (
+//		.clk		(clock_ptr[9]),
+//		.ena		(ena),
+//		.rst		(rst),
+//		.inBlock64	(inBlock64),
+//		.key		(key),
+//		.outBlock64	(out_w_9)
+//	);
 
 
 	

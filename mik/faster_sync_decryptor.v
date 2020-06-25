@@ -41,7 +41,7 @@ module faster_sync_decryptor(
 	wire [31:0] mid_wire_1_V0, mid_wire_1_V1;
 	
 	decryptor_half_round_1 h1_tea_dec_1 (
-		.key		(key),
+		.key		(key[127:64]),
 		.inV0		(flipper1[31: 0]),
 		.inV1		(flipper1[63:32]),
 		.sum		(DELTA*32),
@@ -56,7 +56,7 @@ module faster_sync_decryptor(
 			mid_flip_1 <= {mid_wire_1_V1, mid_wire_1_V0};	// from above
 	end
 	decryptor_half_round_2 h2_tea_dec_1 (
-		.key		(key),
+		.key		(key[63:0]),
 		.inV0		(mid_flip_1[31: 0]),
 		.inV1		(mid_flip_1[63:32]),
 		.sum		(DELTA*32),
@@ -95,7 +95,7 @@ module faster_sync_decryptor(
 	wire [31:0] mid_wire_2_V0, mid_wire_2_V1;
 	
 	decryptor_half_round_1 h1_tea_dec_2 (
-		.key		(key),
+		.key		(key[127:64]),
 		.inV0		(flipper2[31: 0]),
 		.inV1		(flipper2[63:32]),
 		.sum		(DELTA*31),
@@ -110,7 +110,7 @@ module faster_sync_decryptor(
 			mid_flip_2 <= {mid_wire_2_V1, mid_wire_2_V0};	// from above
 	end
 	decryptor_half_round_2 h2_tea_dec_2 (
-		.key		(key),
+		.key		(key[63:0]),
 		.inV0		(mid_flip_2[31: 0]),
 		.inV1		(mid_flip_2[63:32]),
 		.sum		(DELTA*31),
@@ -145,7 +145,7 @@ module faster_sync_decryptor(
 	wire [31:0] mid_wire_3_V0, mid_wire_3_V1;
 	
 	decryptor_half_round_1 h1_tea_dec_3 (
-		.key		(key),
+		.key		(key[127:64]),
 		.inV0		(flipper3[31: 0]),
 		.inV1		(flipper3[63:32]),
 		.sum		(DELTA*30),
@@ -160,7 +160,7 @@ module faster_sync_decryptor(
 			mid_flip_3 <= {mid_wire_3_V1, mid_wire_3_V0};	// from above
 	end
 	decryptor_half_round_2 h2_tea_dec_3 (
-		.key		(key),
+		.key		(key[63:0]),
 		.inV0		(mid_flip_3[31: 0]),
 		.inV1		(mid_flip_3[63:32]),
 		.sum		(DELTA*30),
@@ -194,7 +194,7 @@ module faster_sync_decryptor(
 	wire [31:0] mid_wire_4_V0, mid_wire_4_V1;
 	
 	decryptor_half_round_1 h1_tea_dec_4 (
-		.key		(key),
+		.key		(key[127:64]),
 		.inV0		(flipper4[31: 0]),
 		.inV1		(flipper4[63:32]),
 		.sum		(DELTA*29),
@@ -209,7 +209,7 @@ module faster_sync_decryptor(
 			mid_flip_4 <= {mid_wire_4_V1, mid_wire_4_V0};	// from above
 	end
 	decryptor_half_round_2 h2_tea_dec_4 (
-		.key		(key),
+		.key		(key[63:0]),
 		.inV0		(mid_flip_4[31: 0]),
 		.inV1		(mid_flip_4[63:32]),
 		.sum		(DELTA*29),
@@ -243,7 +243,7 @@ module faster_sync_decryptor(
 	wire [31:0] mid_wire_5_V0, mid_wire_5_V1;
 	
 	decryptor_half_round_1 h1_tea_dec_5 (
-		.key		(key),
+		.key		(key[127:64]),
 		.inV0		(flipper5[31: 0]),
 		.inV1		(flipper5[63:32]),
 		.sum		(DELTA*28),
@@ -258,7 +258,7 @@ module faster_sync_decryptor(
 			mid_flip_5 <= {mid_wire_5_V1, mid_wire_5_V0};	// from above
 	end
 	decryptor_half_round_2 h2_tea_dec_5 (
-		.key		(key),
+		.key		(key[63:0]),
 		.inV0		(mid_flip_5[31: 0]),
 		.inV1		(mid_flip_5[63:32]),
 		.sum		(DELTA*28),
@@ -291,7 +291,7 @@ module faster_sync_decryptor(
 	wire [31:0] mid_wire_6_V0, mid_wire_6_V1;
 	
 	decryptor_half_round_1 h1_tea_dec_6 (
-		.key		(key),
+		.key		(key[127:64]),
 		.inV0		(flipper6[31: 0]),
 		.inV1		(flipper6[63:32]),
 		.sum		(DELTA*27),
@@ -306,7 +306,7 @@ module faster_sync_decryptor(
 			mid_flip_6 <= {mid_wire_6_V1, mid_wire_6_V0};	// from above
 	end
 	decryptor_half_round_2 h2_tea_dec_6 (
-		.key		(key),
+		.key		(key[63:0]),
 		.inV0		(mid_flip_6[31: 0]),
 		.inV1		(mid_flip_6[63:32]),
 		.sum		(DELTA*27),
@@ -339,7 +339,7 @@ module faster_sync_decryptor(
 	wire [31:0] mid_wire_7_V0, mid_wire_7_V1;
 	
 	decryptor_half_round_1 h1_tea_dec_7 (
-		.key		(key),
+		.key		(key[127:64]),
 		.inV0		(flipper7[31: 0]),
 		.inV1		(flipper7[63:32]),
 		.sum		(DELTA*26),
@@ -354,7 +354,7 @@ module faster_sync_decryptor(
 			mid_flip_7 <= {mid_wire_7_V1, mid_wire_7_V0};	// from above
 	end
 	decryptor_half_round_2 h2_tea_dec_7 (
-		.key		(key),
+		.key		(key[63:0]),
 		.inV0		(mid_flip_7[31: 0]),
 		.inV1		(mid_flip_7[63:32]),
 		.sum		(DELTA*26),
@@ -387,7 +387,7 @@ module faster_sync_decryptor(
 	wire [31:0] mid_wire_8_V0, mid_wire_8_V1;
 	
 	decryptor_half_round_1 h1_tea_dec_8 (
-		.key		(key),
+		.key		(key[127:64]),
 		.inV0		(flipper8[31: 0]),
 		.inV1		(flipper8[63:32]),
 		.sum		(DELTA*25),
@@ -402,7 +402,7 @@ module faster_sync_decryptor(
 			mid_flip_8 <= {mid_wire_8_V1, mid_wire_8_V0};	// from above
 	end
 	decryptor_half_round_2 h2_tea_dec_8 (
-		.key		(key),
+		.key		(key[63:0]),
 		.inV0		(mid_flip_8[31: 0]),
 		.inV1		(mid_flip_8[63:32]),
 		.sum		(DELTA*25),
@@ -435,7 +435,7 @@ module faster_sync_decryptor(
 	wire [31:0] mid_wire_9_V0, mid_wire_9_V1;
 	
 	decryptor_half_round_1 h1_tea_dec_9 (
-		.key		(key),
+		.key		(key[127:64]),
 		.inV0		(flipper9[31: 0]),
 		.inV1		(flipper9[63:32]),
 		.sum		(DELTA*24),
@@ -450,7 +450,7 @@ module faster_sync_decryptor(
 			mid_flip_9 <= {mid_wire_9_V1, mid_wire_9_V0};	// from above
 	end
 	decryptor_half_round_2 h2_tea_dec_9 (
-		.key		(key),
+		.key		(key[63:0]),
 		.inV0		(mid_flip_9[31: 0]),
 		.inV1		(mid_flip_9[63:32]),
 		.sum		(DELTA*24),
@@ -483,7 +483,7 @@ module faster_sync_decryptor(
 	wire [31:0] mid_wire_10_V0, mid_wire_10_V1;
 	
 	decryptor_half_round_1 h1_tea_dec_10 (
-		.key		(key),
+		.key		(key[127:64]),
 		.inV0		(flipper10[31: 0]),
 		.inV1		(flipper10[63:32]),
 		.sum		(DELTA*23),
@@ -498,7 +498,7 @@ module faster_sync_decryptor(
 			mid_flip_10 <= {mid_wire_10_V1, mid_wire_10_V0};	// from above
 	end
 	decryptor_half_round_2 h2_tea_dec_10 (
-		.key		(key),
+		.key		(key[63:0]),
 		.inV0		(mid_flip_10[31: 0]),
 		.inV1		(mid_flip_10[63:32]),
 		.sum		(DELTA*23),
@@ -532,7 +532,7 @@ module faster_sync_decryptor(
 	wire [31:0] mid_wire_11_V0, mid_wire_11_V1;
 	
 	decryptor_half_round_1 h1_tea_dec_11 (
-		.key		(key),
+		.key		(key[127:64]),
 		.inV0		(flipper11[31: 0]),
 		.inV1		(flipper11[63:32]),
 		.sum		(DELTA*22),
@@ -547,7 +547,7 @@ module faster_sync_decryptor(
 			mid_flip_11 <= {mid_wire_11_V1, mid_wire_11_V0};	// from above
 	end
 	decryptor_half_round_2 h2_tea_dec_11 (
-		.key		(key),
+		.key		(key[63:0]),
 		.inV0		(mid_flip_11[31: 0]),
 		.inV1		(mid_flip_11[63:32]),
 		.sum		(DELTA*22),
@@ -581,7 +581,7 @@ module faster_sync_decryptor(
 	wire [31:0] mid_wire_12_V0, mid_wire_12_V1;
 	
 	decryptor_half_round_1 h1_tea_dec_12 (
-		.key		(key),
+		.key		(key[127:64]),
 		.inV0		(flipper12[31: 0]),
 		.inV1		(flipper12[63:32]),
 		.sum		(DELTA*21),
@@ -596,7 +596,7 @@ module faster_sync_decryptor(
 			mid_flip_12 <= {mid_wire_12_V1, mid_wire_12_V0};	// from above
 	end
 	decryptor_half_round_2 h2_tea_dec_12 (
-		.key		(key),
+		.key		(key[63:0]),
 		.inV0		(mid_flip_12[31: 0]),
 		.inV1		(mid_flip_12[63:32]),
 		.sum		(DELTA*21),
@@ -630,7 +630,7 @@ module faster_sync_decryptor(
 	wire [31:0] mid_wire_13_V0, mid_wire_13_V1;
 	
 	decryptor_half_round_1 h1_tea_dec_13 (
-		.key		(key),
+		.key		(key[127:64]),
 		.inV0		(flipper13[31: 0]),
 		.inV1		(flipper13[63:32]),
 		.sum		(DELTA*20),
@@ -645,7 +645,7 @@ module faster_sync_decryptor(
 			mid_flip_13 <= {mid_wire_13_V1, mid_wire_13_V0};	// from above
 	end
 	decryptor_half_round_2 h2_tea_dec_13 (
-		.key		(key),
+		.key		(key[63:0]),
 		.inV0		(mid_flip_13[31: 0]),
 		.inV1		(mid_flip_13[63:32]),
 		.sum		(DELTA*20),
@@ -678,7 +678,7 @@ module faster_sync_decryptor(
 	wire [31:0] mid_wire_14_V0, mid_wire_14_V1;
 	
 	decryptor_half_round_1 h1_tea_dec_14 (
-		.key		(key),
+		.key		(key[127:64]),
 		.inV0		(flipper14[31: 0]),
 		.inV1		(flipper14[63:32]),
 		.sum		(DELTA*19),
@@ -693,7 +693,7 @@ module faster_sync_decryptor(
 			mid_flip_14 <= {mid_wire_14_V1, mid_wire_14_V0};	// from above
 	end
 	decryptor_half_round_2 h2_tea_dec_14 (
-		.key		(key),
+		.key		(key[63:0]),
 		.inV0		(mid_flip_14[31: 0]),
 		.inV1		(mid_flip_14[63:32]),
 		.sum		(DELTA*19),
@@ -727,7 +727,7 @@ module faster_sync_decryptor(
 	wire [31:0] mid_wire_15_V0, mid_wire_15_V1;
 	
 	decryptor_half_round_1 h1_tea_dec_15 (
-		.key		(key),
+		.key		(key[127:64]),
 		.inV0		(flipper15[31: 0]),
 		.inV1		(flipper15[63:32]),
 		.sum		(DELTA*18),
@@ -742,7 +742,7 @@ module faster_sync_decryptor(
 			mid_flip_15 <= {mid_wire_15_V1, mid_wire_15_V0};	// from above
 	end
 	decryptor_half_round_2 h2_tea_dec_15 (
-		.key		(key),
+		.key		(key[63:0]),
 		.inV0		(mid_flip_15[31: 0]),
 		.inV1		(mid_flip_15[63:32]),
 		.sum		(DELTA*18),
@@ -775,7 +775,7 @@ module faster_sync_decryptor(
 	wire [31:0] mid_wire_16_V0, mid_wire_16_V1;
 	
 	decryptor_half_round_1 h1_tea_dec_16 (
-		.key		(key),
+		.key		(key[127:64]),
 		.inV0		(flipper16[31: 0]),
 		.inV1		(flipper16[63:32]),
 		.sum		(DELTA*17),
@@ -790,7 +790,7 @@ module faster_sync_decryptor(
 			mid_flip_16 <= {mid_wire_16_V1, mid_wire_16_V0};	// from above
 	end
 	decryptor_half_round_2 h2_tea_dec_16 (
-		.key		(key),
+		.key		(key[63:0]),
 		.inV0		(mid_flip_16[31: 0]),
 		.inV1		(mid_flip_16[63:32]),
 		.sum		(DELTA*17),
@@ -824,7 +824,7 @@ module faster_sync_decryptor(
 	wire [31:0] mid_wire_17_V0, mid_wire_17_V1;
 	
 	decryptor_half_round_1 h1_tea_dec_17 (
-		.key		(key),
+		.key		(key[127:64]),
 		.inV0		(flipper17[31: 0]),
 		.inV1		(flipper17[63:32]),
 		.sum		(DELTA*16),
@@ -839,7 +839,7 @@ module faster_sync_decryptor(
 			mid_flip_17 <= {mid_wire_17_V1, mid_wire_17_V0};	// from above
 	end
 	decryptor_half_round_2 h2_tea_dec_17 (
-		.key		(key),
+		.key		(key[63:0]),
 		.inV0		(mid_flip_17[31: 0]),
 		.inV1		(mid_flip_17[63:32]),
 		.sum		(DELTA*16),
@@ -872,7 +872,7 @@ module faster_sync_decryptor(
 	wire [31:0] mid_wire_18_V0, mid_wire_18_V1;
 	
 	decryptor_half_round_1 h1_tea_dec_18 (
-		.key		(key),
+		.key		(key[127:64]),
 		.inV0		(flipper18[31: 0]),
 		.inV1		(flipper18[63:32]),
 		.sum		(DELTA*15),
@@ -887,7 +887,7 @@ module faster_sync_decryptor(
 			mid_flip_18 <= {mid_wire_18_V1, mid_wire_18_V0};	// from above
 	end
 	decryptor_half_round_2 h2_tea_dec_18 (
-		.key		(key),
+		.key		(key[63:0]),
 		.inV0		(mid_flip_18[31: 0]),
 		.inV1		(mid_flip_18[63:32]),
 		.sum		(DELTA*15),
@@ -920,7 +920,7 @@ module faster_sync_decryptor(
 	wire [31:0] mid_wire_19_V0, mid_wire_19_V1;
 	
 	decryptor_half_round_1 h1_tea_dec_19 (
-		.key		(key),
+		.key		(key[127:64]),
 		.inV0		(flipper19[31: 0]),
 		.inV1		(flipper19[63:32]),
 		.sum		(DELTA*14),
@@ -935,7 +935,7 @@ module faster_sync_decryptor(
 			mid_flip_19 <= {mid_wire_19_V1, mid_wire_19_V0};	// from above
 	end
 	decryptor_half_round_2 h2_tea_dec_19 (
-		.key		(key),
+		.key		(key[63:0]),
 		.inV0		(mid_flip_19[31: 0]),
 		.inV1		(mid_flip_19[63:32]),
 		.sum		(DELTA*14),
@@ -969,7 +969,7 @@ module faster_sync_decryptor(
 	wire [31:0] mid_wire_20_V0, mid_wire_20_V1;
 	
 	decryptor_half_round_1 h1_tea_dec_20 (
-		.key		(key),
+		.key		(key[127:64]),
 		.inV0		(flipper20[31: 0]),
 		.inV1		(flipper20[63:32]),
 		.sum		(DELTA*13),
@@ -984,7 +984,7 @@ module faster_sync_decryptor(
 			mid_flip_20 <= {mid_wire_20_V1, mid_wire_20_V0};	// from above
 	end
 	decryptor_half_round_2 h2_tea_dec_20 (
-		.key		(key),
+		.key		(key[63:0]),
 		.inV0		(mid_flip_20[31: 0]),
 		.inV1		(mid_flip_20[63:32]),
 		.sum		(DELTA*13),
@@ -1018,7 +1018,7 @@ module faster_sync_decryptor(
 	wire [31:0] mid_wire_21_V0, mid_wire_21_V1;
 	
 	decryptor_half_round_1 h1_tea_dec_21 (
-		.key		(key),
+		.key		(key[127:64]),
 		.inV0		(flipper21[31: 0]),
 		.inV1		(flipper21[63:32]),
 		.sum		(DELTA*12),
@@ -1033,7 +1033,7 @@ module faster_sync_decryptor(
 			mid_flip_21 <= {mid_wire_21_V1, mid_wire_21_V0};	// from above
 	end
 	decryptor_half_round_2 h2_tea_dec_21 (
-		.key		(key),
+		.key		(key[63:0]),
 		.inV0		(mid_flip_21[31: 0]),
 		.inV1		(mid_flip_21[63:32]),
 		.sum		(DELTA*12),
@@ -1067,7 +1067,7 @@ module faster_sync_decryptor(
 	wire [31:0] mid_wire_22_V0, mid_wire_22_V1;
 	
 	decryptor_half_round_1 h1_tea_dec_22 (
-		.key		(key),
+		.key		(key[127:64]),
 		.inV0		(flipper22[31: 0]),
 		.inV1		(flipper22[63:32]),
 		.sum		(DELTA*11),
@@ -1082,7 +1082,7 @@ module faster_sync_decryptor(
 			mid_flip_22 <= {mid_wire_22_V1, mid_wire_22_V0};	// from above
 	end
 	decryptor_half_round_2 h2_tea_dec_22 (
-		.key		(key),
+		.key		(key[63:0]),
 		.inV0		(mid_flip_22[31: 0]),
 		.inV1		(mid_flip_22[63:32]),
 		.sum		(DELTA*11),
@@ -1116,7 +1116,7 @@ module faster_sync_decryptor(
 	wire [31:0] mid_wire_23_V0, mid_wire_23_V1;
 	
 	decryptor_half_round_1 h1_tea_dec_23 (
-		.key		(key),
+		.key		(key[127:64]),
 		.inV0		(flipper23[31: 0]),
 		.inV1		(flipper23[63:32]),
 		.sum		(DELTA*10),
@@ -1131,7 +1131,7 @@ module faster_sync_decryptor(
 			mid_flip_23 <= {mid_wire_23_V1, mid_wire_23_V0};	// from above
 	end
 	decryptor_half_round_2 h2_tea_dec_23 (
-		.key		(key),
+		.key		(key[63:0]),
 		.inV0		(mid_flip_23[31: 0]),
 		.inV1		(mid_flip_23[63:32]),
 		.sum		(DELTA*10),
@@ -1165,7 +1165,7 @@ module faster_sync_decryptor(
 	wire [31:0] mid_wire_24_V0, mid_wire_24_V1;
 	
 	decryptor_half_round_1 h1_tea_dec_24 (
-		.key		(key),
+		.key		(key[127:64]),
 		.inV0		(flipper24[31: 0]),
 		.inV1		(flipper24[63:32]),
 		.sum		(DELTA*9),
@@ -1180,7 +1180,7 @@ module faster_sync_decryptor(
 			mid_flip_24 <= {mid_wire_24_V1, mid_wire_24_V0};	// from above
 	end
 	decryptor_half_round_2 h2_tea_dec_24 (
-		.key		(key),
+		.key		(key[63:0]),
 		.inV0		(mid_flip_24[31: 0]),
 		.inV1		(mid_flip_24[63:32]),
 		.sum		(DELTA*9),
@@ -1214,7 +1214,7 @@ module faster_sync_decryptor(
 	wire [31:0] mid_wire_25_V0, mid_wire_25_V1;
 	
 	decryptor_half_round_1 h1_tea_dec_25 (
-		.key		(key),
+		.key		(key[127:64]),
 		.inV0		(flipper25[31: 0]),
 		.inV1		(flipper25[63:32]),
 		.sum		(DELTA*8),
@@ -1229,7 +1229,7 @@ module faster_sync_decryptor(
 			mid_flip_25 <= {mid_wire_25_V1, mid_wire_25_V0};	// from above
 	end
 	decryptor_half_round_2 h2_tea_dec_25 (
-		.key		(key),
+		.key		(key[63:0]),
 		.inV0		(mid_flip_25[31: 0]),
 		.inV1		(mid_flip_25[63:32]),
 		.sum		(DELTA*8),
@@ -1263,7 +1263,7 @@ module faster_sync_decryptor(
 	wire [31:0] mid_wire_26_V0, mid_wire_26_V1;
 	
 	decryptor_half_round_1 h1_tea_dec_26 (
-		.key		(key),
+		.key		(key[127:64]),
 		.inV0		(flipper26[31: 0]),
 		.inV1		(flipper26[63:32]),
 		.sum		(DELTA*7),
@@ -1278,7 +1278,7 @@ module faster_sync_decryptor(
 			mid_flip_26 <= {mid_wire_26_V1, mid_wire_26_V0};	// from above
 	end
 	decryptor_half_round_2 h2_tea_dec_26 (
-		.key		(key),
+		.key		(key[63:0]),
 		.inV0		(mid_flip_26[31: 0]),
 		.inV1		(mid_flip_26[63:32]),
 		.sum		(DELTA*7),
@@ -1312,7 +1312,7 @@ module faster_sync_decryptor(
 	wire [31:0] mid_wire_27_V0, mid_wire_27_V1;
 	
 	decryptor_half_round_1 h1_tea_dec_27 (
-		.key		(key),
+		.key		(key[127:64]),
 		.inV0		(flipper27[31: 0]),
 		.inV1		(flipper27[63:32]),
 		.sum		(DELTA*6),
@@ -1327,7 +1327,7 @@ module faster_sync_decryptor(
 			mid_flip_27 <= {mid_wire_27_V1, mid_wire_27_V0};	// from above
 	end
 	decryptor_half_round_2 h2_tea_dec_27 (
-		.key		(key),
+		.key		(key[63:0]),
 		.inV0		(mid_flip_27[31: 0]),
 		.inV1		(mid_flip_27[63:32]),
 		.sum		(DELTA*6),
@@ -1361,7 +1361,7 @@ module faster_sync_decryptor(
 	wire [31:0] mid_wire_28_V0, mid_wire_28_V1;
 	
 	decryptor_half_round_1 h1_tea_dec_28 (
-		.key		(key),
+		.key		(key[127:64]),
 		.inV0		(flipper28[31: 0]),
 		.inV1		(flipper28[63:32]),
 		.sum		(DELTA*5),
@@ -1376,7 +1376,7 @@ module faster_sync_decryptor(
 			mid_flip_28 <= {mid_wire_28_V1, mid_wire_28_V0};	// from above
 	end
 	decryptor_half_round_2 h2_tea_dec_28 (
-		.key		(key),
+		.key		(key[63:0]),
 		.inV0		(mid_flip_28[31: 0]),
 		.inV1		(mid_flip_28[63:32]),
 		.sum		(DELTA*5),
@@ -1410,7 +1410,7 @@ module faster_sync_decryptor(
 	wire [31:0] mid_wire_29_V0, mid_wire_29_V1;
 	
 	decryptor_half_round_1 h1_tea_dec_29 (
-		.key		(key),
+		.key		(key[127:64]),
 		.inV0		(flipper29[31: 0]),
 		.inV1		(flipper29[63:32]),
 		.sum		(DELTA*4),
@@ -1425,7 +1425,7 @@ module faster_sync_decryptor(
 			mid_flip_29 <= {mid_wire_29_V1, mid_wire_29_V0};	// from above
 	end
 	decryptor_half_round_2 h2_tea_dec_29 (
-		.key		(key),
+		.key		(key[63:0]),
 		.inV0		(mid_flip_29[31: 0]),
 		.inV1		(mid_flip_29[63:32]),
 		.sum		(DELTA*4),
@@ -1459,7 +1459,7 @@ module faster_sync_decryptor(
 	wire [31:0] mid_wire_30_V0, mid_wire_30_V1;
 	
 	decryptor_half_round_1 h1_tea_dec_30 (
-		.key		(key),
+		.key		(key[127:64]),
 		.inV0		(flipper30[31: 0]),
 		.inV1		(flipper30[63:32]),
 		.sum		(DELTA*3),
@@ -1474,7 +1474,7 @@ module faster_sync_decryptor(
 			mid_flip_30 <= {mid_wire_30_V1, mid_wire_30_V0};	// from above
 	end
 	decryptor_half_round_2 h2_tea_dec_30 (
-		.key		(key),
+		.key		(key[63:0]),
 		.inV0		(mid_flip_30[31: 0]),
 		.inV1		(mid_flip_30[63:32]),
 		.sum		(DELTA*3),
@@ -1508,7 +1508,7 @@ module faster_sync_decryptor(
 	wire [31:0] mid_wire_31_V0, mid_wire_31_V1;
 	
 	decryptor_half_round_1 h1_tea_dec_31 (
-		.key		(key),
+		.key		(key[127:64]),
 		.inV0		(flipper31[31: 0]),
 		.inV1		(flipper31[63:32]),
 		.sum		(DELTA*2),
@@ -1523,7 +1523,7 @@ module faster_sync_decryptor(
 			mid_flip_31 <= {mid_wire_31_V1, mid_wire_31_V0};	// from above
 	end
 	decryptor_half_round_2 h2_tea_dec_31 (
-		.key		(key),
+		.key		(key[63:0]),
 		.inV0		(mid_flip_31[31: 0]),
 		.inV1		(mid_flip_31[63:32]),
 		.sum		(DELTA*2),
@@ -1562,7 +1562,7 @@ module faster_sync_decryptor(
 	wire [31:0] mid_wire_32_V0, mid_wire_32_V1;
 	
 	decryptor_half_round_1 h1_tea_dec_32 (
-		.key		(key),
+		.key		(key[127:64]),
 		.inV0		(flipper32[31: 0]),
 		.inV1		(flipper32[63:32]),
 		.sum		(DELTA*1),
@@ -1577,7 +1577,7 @@ module faster_sync_decryptor(
 			mid_flip_32 <= {mid_wire_32_V1, mid_wire_32_V0};	// from above
 	end
 	decryptor_half_round_2 h2_tea_dec_32 (
-		.key		(key),
+		.key		(key[63:0]),
 		.inV0		(mid_flip_32[31: 0]),
 		.inV1		(mid_flip_32[63:32]),
 		.sum		(DELTA*1),

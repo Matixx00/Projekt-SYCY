@@ -6,7 +6,7 @@
  */
  
 module decryptor_half_round_2 (
-	input	[127:0]	key,
+	input	[63:0]	key,
 	input	[ 31:0]	inV0,
 					inV1,
 					sum,	// suppplied from instantiating module - suitable for encryption or decryption
