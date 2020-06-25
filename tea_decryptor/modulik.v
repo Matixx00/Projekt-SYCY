@@ -1,3 +1,13 @@
+/*
+ * Testing TEA.
+ * First encrypt a 64 bit block of data.
+ * Then decrypt with same key.
+ * Output should be same as input.
+ *
+ * Using only combinational logic.
+ *
+ */
+
 module modulik(
 	input			clk, ena, rst,	// standard controlls
 					encrypt,		// should we encrypt?
@@ -11,13 +21,17 @@ module modulik(
 
 	wire [63:0] from_enc_to_dec;
 
+
+// First encrypt:
 	full_encryptor Enc1 (
 		.inBlock64(inBlock64),
 		.key(key),
 		.outBlock64(from_enc_to_dec)
 	);
+
 	
-	full_decryptor Dec1 (
+// Pass encrypted into decryptor:	
+	full_comb_decryptor Dec1 (
 		.inBlock64(from_enc_to_dec),
 		.key(key),
 		.outBlock64(outBlock64)		

@@ -1,3 +1,9 @@
+/*
+ * Combinational encryptor
+ *
+ */
+
+
 module full_encryptor(
 //	input			clk, ena, rst,	// standard controlls
 //					encrypt,		// should we encrypt?

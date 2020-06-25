@@ -27,6 +27,8 @@ def encrypt(v1, v2, k):
 v1 - [31:0] bits
 v2 - [63:32] bits
 '''
+
+
 def decrypt(v1, v2, k):
     y = c_uint32(v1)
     z = c_uint32(v2)
@@ -135,14 +137,14 @@ if __name__ == "__main__":
     # read("random_pdf.pdf", "encrypted.pdf", "Hulk is the best", "encrypt")
     # read("encrypted.pdf", "decrypted.pdf", "Hulk is the best", "decrypt")
     # %PDF-1.6 = 0x2550_4446_2d31_2e36
-    key = extract_key('Hulk is thalamic')
+    key = extract_key('Hulk is the best')
     print('key:', hex(key[0]), hex(key[1]), hex(key[2]), hex(key[3]))
-    pdf16 = [0x2550_4446, 0x2d31_2e36]
-    e = encrypt(pdf16[1], pdf16[0], extract_key('Hulk is thalamic'))
+    pdf15 = [0x2550_4446, 0x2d31_2e35]
+    e = encrypt(pdf15[1], pdf15[0], extract_key('Hulk is the best'))
 
-    print(hex(e[1]), hex(e[0]))
-
-    d = decrypt(e[0], e[1], extract_key('Hulk is thalamic'))
+    # print(hex(e[1]), hex(e[0]))
+    # D239B836A0B24FD3
+    d = decrypt(0xA0B24FD3, 0xD239B836, extract_key('Hulk is the best'))
     print(hex(d[1]), hex(d[0]))
     # 64-bit block - 64'h42c3_7893_fbc2_d912
     # first = 0xFBC2_D912
@@ -155,28 +157,28 @@ if __name__ == "__main__":
     # d = decrypt(second, first, key)
     # print(hex(d[0]), hex(d[1]))
 
-    # f = ["wersja1.1_zaszyfrowana(1).pdf",
-    #      "wersja1.1_zaszyfrowana.pdf",
-    #      "wersja1.2_zaszyfrowana(1).pdf",
-    #      "wersja1.2_zaszyfrowana(2).pdf",
-    #      "wersja1.3_zaszyfrowana(1).pdf",
-    #      "wersja1.3_zaszyfrowana(2).pdf",
-    #      "wersja1.4_zaszyfrowana(1).pdf",
-    #      "wersja1.4_zaszyfrowana(2).pdf",
-    #      "wersja1.5_zaszyfrowana(1).pdf",
-    #      "wersja1.5_zaszyfrowana(2).pdf",
-    #      "wersja1.6_zaszyfrowana(1).pdf",
-    #      "wersja1.6_zaszyfrowana(2).pdf",
-    #      "wersja1.7_zaszyfrowana(1).pdf",
-    #      "wersja1.7_zaszyfrowana(2).pdf",
-    #      "wersja1.8_zaszyfrowana(1).pdf",
-    #      "wersja1.8_zaszyfrowana(2).pdf",
-    #      "wersja1.9_zaszyfrowana(1).pdf",
-    #      "wersja1.9_zaszyfrowana(2).pdf"
-    #      ]
-    # i = len(f)-1
-    # while i >= 0:
-    #     input = "encrypted/" + f[i]
-    #     output = "decrypted/(decrypted)" + f[i]
-    #     read(input, output, break_key(input, "klucze.txt"), "decrypt")
-    #     i -= 1
+    f = ["cyber_napis.pdf",
+         # "wersja1.1_zaszyfrowana.pdf",
+         # "wersja1.2_zaszyfrowana(1).pdf",
+         # "wersja1.2_zaszyfrowana(2).pdf",
+         # "wersja1.3_zaszyfrowana(1).pdf",
+         # "wersja1.3_zaszyfrowana(2).pdf",
+         # "wersja1.4_zaszyfrowana(1).pdf",
+         # "wersja1.4_zaszyfrowana(2).pdf",
+         # "wersja1.5_zaszyfrowana(1).pdf",
+         # "wersja1.5_zaszyfrowana(2).pdf",
+         # "wersja1.6_zaszyfrowana(1).pdf",
+         # "wersja1.6_zaszyfrowana(2).pdf",
+         # "wersja1.7_zaszyfrowana(1).pdf",
+         # "wersja1.7_zaszyfrowana(2).pdf",
+         # "wersja1.8_zaszyfrowana(1).pdf",
+         # "wersja1.8_zaszyfrowana(2).pdf",
+         # "wersja1.9_zaszyfrowana(1).pdf",
+         # "wersja1.9_zaszyfrowana(2).pdf"
+         ]
+    i = len(f)-1
+    while i >= 0:
+        input = f[i]
+        output = "decrypted/(decrypted)" + f[i]
+        read(input, output, 'Hulk is the best', "encrypt")
+        i -= 1
