@@ -39,7 +39,7 @@ module decryptor_test (
 	*/
 	// ======================= End slow clock generator
 	
-	reg		[9:0]	clk_sim;	// clock simulator
+	reg		[9:0]	clk_sim;	// clock simulator - just a rotating register
 	always @ (posedge clk or posedge rst) begin
 		if (rst) begin
 			clk_sim <= 10'b00_0001_1111;

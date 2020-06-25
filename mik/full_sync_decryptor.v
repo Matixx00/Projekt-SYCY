@@ -38,33 +38,7 @@ module full_sync_decryptor(
  * Output goes on the wire, to be input into the 2nd flip-flop and then further into 2nd round of TEA.
  */
 	wire [31:0] wire_1_V0, wire_1_V1;
-	wire [31:0] mid_wire_1_V0, mid_wire_1_V1;
 	
-	decryptor_half_round_1 h1_tea_dec_1 (
-		.key		(key),
-		.inV0		(flipper1[31: 0]),
-		.inV1		(flipper1[63:32]),
-		.sum		(DELTA*32),
-		.outputV0	(mid_wire_1_V0),
-		.outputV1	(mid_wire_1_V1)
-	);
-	reg [63:0] mid_flip_1;
-	always@(posedge clk, posedge rst) begin
-		if (rst)
-			mid_flip_1 <= 64'b0;
-		else if (clk)
-			mid_flip_1 <= {mid_wire_1_V1, mid_wire_1_V0};	// from above
-	end
-	decryptor_half_round_2 h2_tea_dec_1 (
-		.key		(key),
-		.inV0		(mid_flip_1[31: 0]),
-		.inV1		(mid_flip_1[63:32]),
-		.sum		(DELTA*32),
-		.outputV0	(wire_1_V0),
-		.outputV1	(wire_1_V1)
-	);
-	
-/*	
 	decryptor_single_round tea_dec_1 (
 //		.clk		(clk),
 		.key(key),
@@ -75,7 +49,7 @@ module full_sync_decryptor(
 		.outputV1(wire_1_V1)
 	);
 
-*/	
+	
 	reg [63:0] flipper2;
 	always@(posedge clk, posedge rst) begin
 		if (rst)
@@ -92,33 +66,7 @@ module full_sync_decryptor(
  * Output is on new wire for the following flip-flop and into the following round.
  */
 	wire [31:0] wire_2_V0, wire_2_V1;
-	wire [31:0] mid_wire_2_V0, mid_wire_2_V1;
 	
-	decryptor_half_round_1 h1_tea_dec_2 (
-		.key		(key),
-		.inV0		(flipper2[31: 0]),
-		.inV1		(flipper2[63:32]),
-		.sum		(DELTA*31),
-		.outputV0	(mid_wire_2_V0),
-		.outputV1	(mid_wire_2_V1)
-	);
-	reg [63:0] mid_flip_2;
-	always@(posedge clk, posedge rst) begin
-		if (rst)
-			mid_flip_2 <= 64'b0;
-		else if (clk)
-			mid_flip_2 <= {mid_wire_2_V1, mid_wire_2_V0};	// from above
-	end
-	decryptor_half_round_2 h2_tea_dec_2 (
-		.key		(key),
-		.inV0		(mid_flip_2[31: 0]),
-		.inV1		(mid_flip_2[63:32]),
-		.sum		(DELTA*31),
-		.outputV0	(wire_2_V0),
-		.outputV1	(wire_2_V1)
-	);
-	
-/*	
 	decryptor_single_round tea_dec_2 (
 //		.clk		(clk),
 		.key(key),
@@ -128,7 +76,7 @@ module full_sync_decryptor(
 		.outputV0(wire_2_V0),
 		.outputV1(wire_2_V1)
 	);
-*/
+
 	reg [63:0] flipper3;
 	always@(posedge clk, posedge rst) begin
 		if (rst)
@@ -142,32 +90,7 @@ module full_sync_decryptor(
 	
 // Round 3:
 	wire [31:0] wire_3_V1, wire_3_V0;
-	wire [31:0] mid_wire_3_V0, mid_wire_3_V1;
 	
-	decryptor_half_round_1 h1_tea_dec_3 (
-		.key		(key),
-		.inV0		(flipper3[31: 0]),
-		.inV1		(flipper3[63:32]),
-		.sum		(DELTA*30),
-		.outputV0	(mid_wire_3_V0),
-		.outputV1	(mid_wire_3_V1)
-	);
-	reg [63:0] mid_flip_3;
-	always@(posedge clk, posedge rst) begin
-		if (rst)
-			mid_flip_3 <= 64'b0;
-		else if (clk)
-			mid_flip_3 <= {mid_wire_3_V1, mid_wire_3_V0};	// from above
-	end
-	decryptor_half_round_2 h2_tea_dec_3 (
-		.key		(key),
-		.inV0		(mid_flip_3[31: 0]),
-		.inV1		(mid_flip_3[63:32]),
-		.sum		(DELTA*30),
-		.outputV0	(wire_3_V0),
-		.outputV1	(wire_3_V1)
-	);
-/*	
 	decryptor_single_round tea_dec_3 (
 //		.clk		(clk),
 		.key(key),
@@ -177,7 +100,7 @@ module full_sync_decryptor(
 		.outputV0(wire_3_V0),
 		.outputV1(wire_3_V1)
 	);
-*/	
+	
 	reg [63:0] flipper4;
 	always@(posedge clk, posedge rst) begin
 		if (rst)
@@ -191,32 +114,7 @@ module full_sync_decryptor(
 
 // Round 4:
 	wire [31:0] wire_4_V1, wire_4_V0;
-	wire [31:0] mid_wire_4_V0, mid_wire_4_V1;
 	
-	decryptor_half_round_1 h1_tea_dec_4 (
-		.key		(key),
-		.inV0		(flipper4[31: 0]),
-		.inV1		(flipper4[63:32]),
-		.sum		(DELTA*29),
-		.outputV0	(mid_wire_4_V0),
-		.outputV1	(mid_wire_4_V1)
-	);
-	reg [63:0] mid_flip_4;
-	always@(posedge clk, posedge rst) begin
-		if (rst)
-			mid_flip_4 <= 64'b0;
-		else if (clk)
-			mid_flip_4 <= {mid_wire_4_V1, mid_wire_4_V0};	// from above
-	end
-	decryptor_half_round_2 h2_tea_dec_4 (
-		.key		(key),
-		.inV0		(mid_flip_4[31: 0]),
-		.inV1		(mid_flip_4[63:32]),
-		.sum		(DELTA*29),
-		.outputV0	(wire_4_V0),
-		.outputV1	(wire_4_V1)
-	);
-/*	
 	decryptor_single_round tea_dec_4 (
 //		.clk		(clk),
 		.key(key),
@@ -226,7 +124,7 @@ module full_sync_decryptor(
 		.outputV0(wire_4_V0),
 		.outputV1(wire_4_V1)
 	);
-*/	
+	
 	reg [63:0] flipper5;
 	always@(posedge clk, posedge rst) begin
 		if (rst)
@@ -240,32 +138,7 @@ module full_sync_decryptor(
 	
 // Round 5:
 	wire [31:0] wire_5_V1, wire_5_V0;
-	wire [31:0] mid_wire_5_V0, mid_wire_5_V1;
 	
-	decryptor_half_round_1 h1_tea_dec_5 (
-		.key		(key),
-		.inV0		(flipper5[31: 0]),
-		.inV1		(flipper5[63:32]),
-		.sum		(DELTA*28),
-		.outputV0	(mid_wire_5_V0),
-		.outputV1	(mid_wire_5_V1)
-	);
-	reg [63:0] mid_flip_5;
-	always@(posedge clk, posedge rst) begin
-		if (rst)
-			mid_flip_5 <= 64'b0;
-		else if (clk)
-			mid_flip_5 <= {mid_wire_5_V1, mid_wire_5_V0};	// from above
-	end
-	decryptor_half_round_2 h2_tea_dec_5 (
-		.key		(key),
-		.inV0		(mid_flip_5[31: 0]),
-		.inV1		(mid_flip_5[63:32]),
-		.sum		(DELTA*28),
-		.outputV0	(wire_5_V0),
-		.outputV1	(wire_5_V1)
-	);
-/*	
 	decryptor_single_round tea_dec_5 (
 //		.clk		(clk),
 		.key(key),
@@ -275,7 +148,7 @@ module full_sync_decryptor(
 		.outputV0(wire_5_V0),
 		.outputV1(wire_5_V1)
 	);
-*/	
+	
 	reg [63:0] flipper6;
 	always@(posedge clk, posedge rst) begin
 		if (rst)
@@ -288,32 +161,7 @@ module full_sync_decryptor(
 	
 // Round 6:
 	wire [31:0] wire_6_V1, wire_6_V0;
-	wire [31:0] mid_wire_6_V0, mid_wire_6_V1;
 	
-	decryptor_half_round_1 h1_tea_dec_6 (
-		.key		(key),
-		.inV0		(flipper6[31: 0]),
-		.inV1		(flipper6[63:32]),
-		.sum		(DELTA*27),
-		.outputV0	(mid_wire_6_V0),
-		.outputV1	(mid_wire_6_V1)
-	);
-	reg [63:0] mid_flip_6;
-	always@(posedge clk, posedge rst) begin
-		if (rst)
-			mid_flip_6 <= 64'b0;
-		else if (clk)
-			mid_flip_6 <= {mid_wire_6_V1, mid_wire_6_V0};	// from above
-	end
-	decryptor_half_round_2 h2_tea_dec_6 (
-		.key		(key),
-		.inV0		(mid_flip_6[31: 0]),
-		.inV1		(mid_flip_6[63:32]),
-		.sum		(DELTA*27),
-		.outputV0	(wire_6_V0),
-		.outputV1	(wire_6_V1)
-	);
-/*	
 	decryptor_single_round tea_dec_6 (
 //		.clk		(clk),
 		.key(key),
@@ -323,7 +171,7 @@ module full_sync_decryptor(
 		.outputV0(wire_6_V0),
 		.outputV1(wire_6_V1)
 	);
-*/	
+	
 	reg [63:0] flipper7;
 	always@(posedge clk, posedge rst) begin
 		if (rst)
@@ -336,32 +184,7 @@ module full_sync_decryptor(
 	
 // Round 7:
 	wire [31:0] wire_7_V1, wire_7_V0;
-	wire [31:0] mid_wire_7_V0, mid_wire_7_V1;
 	
-	decryptor_half_round_1 h1_tea_dec_7 (
-		.key		(key),
-		.inV0		(flipper7[31: 0]),
-		.inV1		(flipper7[63:32]),
-		.sum		(DELTA*26),
-		.outputV0	(mid_wire_7_V0),
-		.outputV1	(mid_wire_7_V1)
-	);
-	reg [63:0] mid_flip_7;
-	always@(posedge clk, posedge rst) begin
-		if (rst)
-			mid_flip_7 <= 64'b0;
-		else if (clk)
-			mid_flip_7 <= {mid_wire_7_V1, mid_wire_7_V0};	// from above
-	end
-	decryptor_half_round_2 h2_tea_dec_7 (
-		.key		(key),
-		.inV0		(mid_flip_7[31: 0]),
-		.inV1		(mid_flip_7[63:32]),
-		.sum		(DELTA*26),
-		.outputV0	(wire_7_V0),
-		.outputV1	(wire_7_V1)
-	);
-/*	
 	decryptor_single_round tea_dec_7 (
 //		.clk		(clk),
 		.key(key),
@@ -371,7 +194,7 @@ module full_sync_decryptor(
 		.outputV0(wire_7_V0),
 		.outputV1(wire_7_V1)
 	);
-*/	
+	
 	reg [63:0] flipper8;
 	always@(posedge clk, posedge rst) begin
 		if (rst)
@@ -384,32 +207,7 @@ module full_sync_decryptor(
 	
 // Round 8:
 	wire [31:0] wire_8_V1, wire_8_V0;
-	wire [31:0] mid_wire_8_V0, mid_wire_8_V1;
 	
-	decryptor_half_round_1 h1_tea_dec_8 (
-		.key		(key),
-		.inV0		(flipper8[31: 0]),
-		.inV1		(flipper8[63:32]),
-		.sum		(DELTA*25),
-		.outputV0	(mid_wire_8_V0),
-		.outputV1	(mid_wire_8_V1)
-	);
-	reg [63:0] mid_flip_8;
-	always@(posedge clk, posedge rst) begin
-		if (rst)
-			mid_flip_8 <= 64'b0;
-		else if (clk)
-			mid_flip_8 <= {mid_wire_8_V1, mid_wire_8_V0};	// from above
-	end
-	decryptor_half_round_2 h2_tea_dec_8 (
-		.key		(key),
-		.inV0		(mid_flip_8[31: 0]),
-		.inV1		(mid_flip_8[63:32]),
-		.sum		(DELTA*25),
-		.outputV0	(wire_8_V0),
-		.outputV1	(wire_8_V1)
-	);
-/*	
 	decryptor_single_round tea_dec_8 (
 //		.clk		(clk),
 		.key(key),
@@ -419,7 +217,7 @@ module full_sync_decryptor(
 		.outputV0(wire_8_V0),
 		.outputV1(wire_8_V1)
 	);
-*/	
+	
 	reg [63:0] flipper9;
 	always@(posedge clk, posedge rst) begin
 		if (rst)
@@ -432,32 +230,7 @@ module full_sync_decryptor(
 	
 // Round 9:
 	wire [31:0] wire_9_V1, wire_9_V0;
-	wire [31:0] mid_wire_9_V0, mid_wire_9_V1;
 	
-	decryptor_half_round_1 h1_tea_dec_9 (
-		.key		(key),
-		.inV0		(flipper9[31: 0]),
-		.inV1		(flipper9[63:32]),
-		.sum		(DELTA*24),
-		.outputV0	(mid_wire_9_V0),
-		.outputV1	(mid_wire_9_V1)
-	);
-	reg [63:0] mid_flip_9;
-	always@(posedge clk, posedge rst) begin
-		if (rst)
-			mid_flip_9 <= 64'b0;
-		else if (clk)
-			mid_flip_9 <= {mid_wire_9_V1, mid_wire_9_V0};	// from above
-	end
-	decryptor_half_round_2 h2_tea_dec_9 (
-		.key		(key),
-		.inV0		(mid_flip_9[31: 0]),
-		.inV1		(mid_flip_9[63:32]),
-		.sum		(DELTA*24),
-		.outputV0	(wire_9_V0),
-		.outputV1	(wire_9_V1)
-	);
-/*	
 	decryptor_single_round tea_dec_9 (
 //		.clk		(clk),
 		.key(key),
@@ -467,7 +240,7 @@ module full_sync_decryptor(
 		.outputV0(wire_9_V0),
 		.outputV1(wire_9_V1)
 	);
-*/	
+	
 	reg [63:0] flipper10;
 	always@(posedge clk, posedge rst) begin
 		if (rst)
@@ -480,32 +253,7 @@ module full_sync_decryptor(
 	
 // Round 10:
 	wire [31:0] wire_10_V1, wire_10_V0;
-	wire [31:0] mid_wire_10_V0, mid_wire_10_V1;
 	
-	decryptor_half_round_1 h1_tea_dec_10 (
-		.key		(key),
-		.inV0		(flipper10[31: 0]),
-		.inV1		(flipper10[63:32]),
-		.sum		(DELTA*23),
-		.outputV0	(mid_wire_10_V0),
-		.outputV1	(mid_wire_10_V1)
-	);
-	reg [63:0] mid_flip_10;
-	always@(posedge clk, posedge rst) begin
-		if (rst)
-			mid_flip_10 <= 64'b0;
-		else if (clk)
-			mid_flip_10 <= {mid_wire_10_V1, mid_wire_10_V0};	// from above
-	end
-	decryptor_half_round_2 h2_tea_dec_10 (
-		.key		(key),
-		.inV0		(mid_flip_10[31: 0]),
-		.inV1		(mid_flip_10[63:32]),
-		.sum		(DELTA*23),
-		.outputV0	(wire_10_V0),
-		.outputV1	(wire_10_V1)
-	);
-/*	
 	decryptor_single_round tea_dec_10 (
 //		.clk		(clk),
 		.key(key),
@@ -515,7 +263,7 @@ module full_sync_decryptor(
 		.outputV0(wire_10_V0),
 		.outputV1(wire_10_V1)
 	);
-*/	
+	
 	reg [63:0] flipper11;
 	always@(posedge clk, posedge rst) begin
 		if (rst)
@@ -529,32 +277,7 @@ module full_sync_decryptor(
 	
 // Round 11:
 	wire [31:0] wire_11_V1, wire_11_V0;
-	wire [31:0] mid_wire_11_V0, mid_wire_11_V1;
 	
-	decryptor_half_round_1 h1_tea_dec_11 (
-		.key		(key),
-		.inV0		(flipper11[31: 0]),
-		.inV1		(flipper11[63:32]),
-		.sum		(DELTA*22),
-		.outputV0	(mid_wire_11_V0),
-		.outputV1	(mid_wire_11_V1)
-	);
-	reg [63:0] mid_flip_11;
-	always@(posedge clk, posedge rst) begin
-		if (rst)
-			mid_flip_11 <= 64'b0;
-		else if (clk)
-			mid_flip_11 <= {mid_wire_11_V1, mid_wire_11_V0};	// from above
-	end
-	decryptor_half_round_2 h2_tea_dec_11 (
-		.key		(key),
-		.inV0		(mid_flip_11[31: 0]),
-		.inV1		(mid_flip_11[63:32]),
-		.sum		(DELTA*22),
-		.outputV0	(wire_11_V0),
-		.outputV1	(wire_11_V1)
-	);
-/*	
 	decryptor_single_round tea_dec_11 (
 //		.clk		(clk),
 		.key(key),
@@ -564,7 +287,7 @@ module full_sync_decryptor(
 		.outputV0(wire_11_V0),
 		.outputV1(wire_11_V1)
 	);
-*/	
+	
 	reg [63:0] flipper12;
 	always@(posedge clk, posedge rst) begin
 		if (rst)
@@ -578,32 +301,7 @@ module full_sync_decryptor(
 	
 // Round 12:
 	wire [31:0] wire_12_V1, wire_12_V0;
-	wire [31:0] mid_wire_12_V0, mid_wire_12_V1;
 	
-	decryptor_half_round_1 h1_tea_dec_12 (
-		.key		(key),
-		.inV0		(flipper12[31: 0]),
-		.inV1		(flipper12[63:32]),
-		.sum		(DELTA*21),
-		.outputV0	(mid_wire_12_V0),
-		.outputV1	(mid_wire_12_V1)
-	);
-	reg [63:0] mid_flip_12;
-	always@(posedge clk, posedge rst) begin
-		if (rst)
-			mid_flip_12 <= 64'b0;
-		else if (clk)
-			mid_flip_12 <= {mid_wire_12_V1, mid_wire_12_V0};	// from above
-	end
-	decryptor_half_round_2 h2_tea_dec_12 (
-		.key		(key),
-		.inV0		(mid_flip_12[31: 0]),
-		.inV1		(mid_flip_12[63:32]),
-		.sum		(DELTA*21),
-		.outputV0	(wire_12_V0),
-		.outputV1	(wire_12_V1)
-	);
-/*	
 	decryptor_single_round tea_dec_12 (
 //		.clk		(clk),
 		.key(key),
@@ -613,7 +311,7 @@ module full_sync_decryptor(
 		.outputV0(wire_12_V0),
 		.outputV1(wire_12_V1)
 	);
-*/	
+	
 	reg [63:0] flipper13;
 	always@(posedge clk, posedge rst) begin
 		if (rst)
@@ -627,32 +325,7 @@ module full_sync_decryptor(
 	
 // Round 13:
 	wire [31:0] wire_13_V1, wire_13_V0;
-	wire [31:0] mid_wire_13_V0, mid_wire_13_V1;
 	
-	decryptor_half_round_1 h1_tea_dec_13 (
-		.key		(key),
-		.inV0		(flipper13[31: 0]),
-		.inV1		(flipper13[63:32]),
-		.sum		(DELTA*20),
-		.outputV0	(mid_wire_13_V0),
-		.outputV1	(mid_wire_13_V1)
-	);
-	reg [63:0] mid_flip_13;
-	always@(posedge clk, posedge rst) begin
-		if (rst)
-			mid_flip_13 <= 64'b0;
-		else if (clk)
-			mid_flip_13 <= {mid_wire_13_V1, mid_wire_13_V0};	// from above
-	end
-	decryptor_half_round_2 h2_tea_dec_13 (
-		.key		(key),
-		.inV0		(mid_flip_13[31: 0]),
-		.inV1		(mid_flip_13[63:32]),
-		.sum		(DELTA*20),
-		.outputV0	(wire_13_V0),
-		.outputV1	(wire_13_V1)
-	);
-/*	
 	decryptor_single_round tea_dec_13 (
 //		.clk		(clk),
 		.key(key),
@@ -662,7 +335,7 @@ module full_sync_decryptor(
 		.outputV0(wire_13_V0),
 		.outputV1(wire_13_V1)
 	);
-*/	
+	
 	reg [63:0] flipper14;
 	always@(posedge clk, posedge rst) begin
 		if (rst)
@@ -675,32 +348,7 @@ module full_sync_decryptor(
 	
 // Round 14:
 	wire [31:0] wire_14_V1, wire_14_V0;
-	wire [31:0] mid_wire_14_V0, mid_wire_14_V1;
 	
-	decryptor_half_round_1 h1_tea_dec_14 (
-		.key		(key),
-		.inV0		(flipper14[31: 0]),
-		.inV1		(flipper14[63:32]),
-		.sum		(DELTA*19),
-		.outputV0	(mid_wire_14_V0),
-		.outputV1	(mid_wire_14_V1)
-	);
-	reg [63:0] mid_flip_14;
-	always@(posedge clk, posedge rst) begin
-		if (rst)
-			mid_flip_14 <= 64'b0;
-		else if (clk)
-			mid_flip_14 <= {mid_wire_14_V1, mid_wire_14_V0};	// from above
-	end
-	decryptor_half_round_2 h2_tea_dec_14 (
-		.key		(key),
-		.inV0		(mid_flip_14[31: 0]),
-		.inV1		(mid_flip_14[63:32]),
-		.sum		(DELTA*19),
-		.outputV0	(wire_14_V0),
-		.outputV1	(wire_14_V1)
-	);
-/*	
 	decryptor_single_round tea_dec_14 (
 //		.clk		(clk),
 		.key(key),
@@ -710,7 +358,7 @@ module full_sync_decryptor(
 		.outputV0(wire_14_V0),
 		.outputV1(wire_14_V1)
 	);
-*/	
+	
 	reg [63:0] flipper15;
 	always@(posedge clk, posedge rst) begin
 		if (rst)
@@ -724,32 +372,7 @@ module full_sync_decryptor(
 	
 // Round 15:
 	wire [31:0] wire_15_V1, wire_15_V0;
-	wire [31:0] mid_wire_15_V0, mid_wire_15_V1;
 	
-	decryptor_half_round_1 h1_tea_dec_15 (
-		.key		(key),
-		.inV0		(flipper15[31: 0]),
-		.inV1		(flipper15[63:32]),
-		.sum		(DELTA*18),
-		.outputV0	(mid_wire_15_V0),
-		.outputV1	(mid_wire_15_V1)
-	);
-	reg [63:0] mid_flip_15;
-	always@(posedge clk, posedge rst) begin
-		if (rst)
-			mid_flip_15 <= 64'b0;
-		else if (clk)
-			mid_flip_15 <= {mid_wire_15_V1, mid_wire_15_V0};	// from above
-	end
-	decryptor_half_round_2 h2_tea_dec_15 (
-		.key		(key),
-		.inV0		(mid_flip_15[31: 0]),
-		.inV1		(mid_flip_15[63:32]),
-		.sum		(DELTA*18),
-		.outputV0	(wire_15_V0),
-		.outputV1	(wire_15_V1)
-	);
-/*	
 	decryptor_single_round tea_dec_15 (
 //		.clk		(clk),
 		.key(key),
@@ -759,7 +382,7 @@ module full_sync_decryptor(
 		.outputV0(wire_15_V0),
 		.outputV1(wire_15_V1)
 	);
-*/	
+	
 	reg [63:0] flipper16;
 	always@(posedge clk, posedge rst) begin
 		if (rst)
@@ -772,32 +395,7 @@ module full_sync_decryptor(
 	
 // Round 16:
 	wire [31:0] wire_16_V1, wire_16_V0;
-	wire [31:0] mid_wire_16_V0, mid_wire_16_V1;
 	
-	decryptor_half_round_1 h1_tea_dec_16 (
-		.key		(key),
-		.inV0		(flipper16[31: 0]),
-		.inV1		(flipper16[63:32]),
-		.sum		(DELTA*17),
-		.outputV0	(mid_wire_16_V0),
-		.outputV1	(mid_wire_16_V1)
-	);
-	reg [63:0] mid_flip_16;
-	always@(posedge clk, posedge rst) begin
-		if (rst)
-			mid_flip_16 <= 64'b0;
-		else if (clk)
-			mid_flip_16 <= {mid_wire_16_V1, mid_wire_16_V0};	// from above
-	end
-	decryptor_half_round_2 h2_tea_dec_16 (
-		.key		(key),
-		.inV0		(mid_flip_16[31: 0]),
-		.inV1		(mid_flip_16[63:32]),
-		.sum		(DELTA*17),
-		.outputV0	(wire_16_V0),
-		.outputV1	(wire_16_V1)
-	);
-/*	
 	decryptor_single_round tea_dec_16 (
 //		.clk		(clk),
 		.key(key),
@@ -807,7 +405,7 @@ module full_sync_decryptor(
 		.outputV0(wire_16_V0),
 		.outputV1(wire_16_V1)
 	);
-*/
+
 	reg [63:0] flipper17;
 	always@(posedge clk, posedge rst) begin
 		if (rst)
@@ -821,32 +419,7 @@ module full_sync_decryptor(
 		
 // Round 17:
 	wire [31:0] wire_17_V1, wire_17_V0;
-	wire [31:0] mid_wire_17_V0, mid_wire_17_V1;
 	
-	decryptor_half_round_1 h1_tea_dec_17 (
-		.key		(key),
-		.inV0		(flipper17[31: 0]),
-		.inV1		(flipper17[63:32]),
-		.sum		(DELTA*16),
-		.outputV0	(mid_wire_17_V0),
-		.outputV1	(mid_wire_17_V1)
-	);
-	reg [63:0] mid_flip_17;
-	always@(posedge clk, posedge rst) begin
-		if (rst)
-			mid_flip_17 <= 64'b0;
-		else if (clk)
-			mid_flip_17 <= {mid_wire_17_V1, mid_wire_17_V0};	// from above
-	end
-	decryptor_half_round_2 h2_tea_dec_17 (
-		.key		(key),
-		.inV0		(mid_flip_17[31: 0]),
-		.inV1		(mid_flip_17[63:32]),
-		.sum		(DELTA*16),
-		.outputV0	(wire_17_V0),
-		.outputV1	(wire_17_V1)
-	);
-/*	
 	decryptor_single_round tea_dec_17 (
 //		.clk		(clk),
 		.key(key),
@@ -856,7 +429,7 @@ module full_sync_decryptor(
 		.outputV0(wire_17_V0),
 		.outputV1(wire_17_V1)
 	);
-*/	
+	
 	reg [63:0] flipper18;
 	always@(posedge clk, posedge rst) begin
 		if (rst)
@@ -869,32 +442,7 @@ module full_sync_decryptor(
 	
 // Round 18:
 	wire [31:0] wire_18_V1, wire_18_V0;
-	wire [31:0] mid_wire_18_V0, mid_wire_18_V1;
 	
-	decryptor_half_round_1 h1_tea_dec_18 (
-		.key		(key),
-		.inV0		(flipper18[31: 0]),
-		.inV1		(flipper18[63:32]),
-		.sum		(DELTA*15),
-		.outputV0	(mid_wire_18_V0),
-		.outputV1	(mid_wire_18_V1)
-	);
-	reg [63:0] mid_flip_18;
-	always@(posedge clk, posedge rst) begin
-		if (rst)
-			mid_flip_18 <= 64'b0;
-		else if (clk)
-			mid_flip_18 <= {mid_wire_18_V1, mid_wire_18_V0};	// from above
-	end
-	decryptor_half_round_2 h2_tea_dec_18 (
-		.key		(key),
-		.inV0		(mid_flip_18[31: 0]),
-		.inV1		(mid_flip_18[63:32]),
-		.sum		(DELTA*15),
-		.outputV0	(wire_18_V0),
-		.outputV1	(wire_18_V1)
-	);
-/*	
 	decryptor_single_round tea_dec_18 (
 //		.clk		(clk),
 		.key(key),
@@ -904,7 +452,7 @@ module full_sync_decryptor(
 		.outputV0(wire_18_V0),
 		.outputV1(wire_18_V1)
 	);
-*/	
+	
 	reg [63:0] flipper19;
 	always@(posedge clk, posedge rst) begin
 		if (rst)
@@ -917,32 +465,7 @@ module full_sync_decryptor(
 	
 // Round 19:
 	wire [31:0] wire_19_V1, wire_19_V0;
-	wire [31:0] mid_wire_19_V0, mid_wire_19_V1;
 	
-	decryptor_half_round_1 h1_tea_dec_19 (
-		.key		(key),
-		.inV0		(flipper19[31: 0]),
-		.inV1		(flipper19[63:32]),
-		.sum		(DELTA*14),
-		.outputV0	(mid_wire_19_V0),
-		.outputV1	(mid_wire_19_V1)
-	);
-	reg [63:0] mid_flip_19;
-	always@(posedge clk, posedge rst) begin
-		if (rst)
-			mid_flip_19 <= 64'b0;
-		else if (clk)
-			mid_flip_19 <= {mid_wire_19_V1, mid_wire_19_V0};	// from above
-	end
-	decryptor_half_round_2 h2_tea_dec_19 (
-		.key		(key),
-		.inV0		(mid_flip_19[31: 0]),
-		.inV1		(mid_flip_19[63:32]),
-		.sum		(DELTA*14),
-		.outputV0	(wire_19_V0),
-		.outputV1	(wire_19_V1)
-	);
-/*	
 	decryptor_single_round tea_dec_19 (
 //		.clk		(clk),
 		.key(key),
@@ -952,7 +475,7 @@ module full_sync_decryptor(
 		.outputV0(wire_19_V0),
 		.outputV1(wire_19_V1)
 	);
-*/	
+	
 	reg [63:0] flipper20;
 	always@(posedge clk, posedge rst) begin
 		if (rst)
@@ -966,32 +489,7 @@ module full_sync_decryptor(
 	
 // Round 20:
 	wire [31:0] wire_20_V1, wire_20_V0;
-	wire [31:0] mid_wire_20_V0, mid_wire_20_V1;
 	
-	decryptor_half_round_1 h1_tea_dec_20 (
-		.key		(key),
-		.inV0		(flipper20[31: 0]),
-		.inV1		(flipper20[63:32]),
-		.sum		(DELTA*13),
-		.outputV0	(mid_wire_20_V0),
-		.outputV1	(mid_wire_20_V1)
-	);
-	reg [63:0] mid_flip_20;
-	always@(posedge clk, posedge rst) begin
-		if (rst)
-			mid_flip_20 <= 64'b0;
-		else if (clk)
-			mid_flip_20 <= {mid_wire_20_V1, mid_wire_20_V0};	// from above
-	end
-	decryptor_half_round_2 h2_tea_dec_20 (
-		.key		(key),
-		.inV0		(mid_flip_20[31: 0]),
-		.inV1		(mid_flip_20[63:32]),
-		.sum		(DELTA*13),
-		.outputV0	(wire_20_V0),
-		.outputV1	(wire_20_V1)
-	);
-/*	
 	decryptor_single_round tea_dec_20 (
 //		.clk		(clk),
 		.key(key),
@@ -1001,7 +499,7 @@ module full_sync_decryptor(
 		.outputV0(wire_20_V0),
 		.outputV1(wire_20_V1)
 	);
-*/	
+	
 	reg [63:0] flipper21;
 	always@(posedge clk, posedge rst) begin
 		if (rst)
@@ -1015,32 +513,7 @@ module full_sync_decryptor(
 	
 // Round 21:
 	wire [31:0] wire_21_V1, wire_21_V0;
-	wire [31:0] mid_wire_21_V0, mid_wire_21_V1;
 	
-	decryptor_half_round_1 h1_tea_dec_21 (
-		.key		(key),
-		.inV0		(flipper21[31: 0]),
-		.inV1		(flipper21[63:32]),
-		.sum		(DELTA*12),
-		.outputV0	(mid_wire_21_V0),
-		.outputV1	(mid_wire_21_V1)
-	);
-	reg [63:0] mid_flip_21;
-	always@(posedge clk, posedge rst) begin
-		if (rst)
-			mid_flip_21 <= 64'b0;
-		else if (clk)
-			mid_flip_21 <= {mid_wire_21_V1, mid_wire_21_V0};	// from above
-	end
-	decryptor_half_round_2 h2_tea_dec_21 (
-		.key		(key),
-		.inV0		(mid_flip_21[31: 0]),
-		.inV1		(mid_flip_21[63:32]),
-		.sum		(DELTA*12),
-		.outputV0	(wire_21_V0),
-		.outputV1	(wire_21_V1)
-	);
-/*	
 	decryptor_single_round tea_dec_21 (
 //		.clk		(clk),
 		.key(key),
@@ -1050,7 +523,7 @@ module full_sync_decryptor(
 		.outputV0(wire_21_V0),
 		.outputV1(wire_21_V1)
 	);
-*/	
+	
 	reg [63:0] flipper22;
 	always@(posedge clk, posedge rst) begin
 		if (rst)
@@ -1064,32 +537,7 @@ module full_sync_decryptor(
 	
 // Round 22:
 	wire [31:0] wire_22_V1, wire_22_V0;
-	wire [31:0] mid_wire_22_V0, mid_wire_22_V1;
 	
-	decryptor_half_round_1 h1_tea_dec_22 (
-		.key		(key),
-		.inV0		(flipper22[31: 0]),
-		.inV1		(flipper22[63:32]),
-		.sum		(DELTA*11),
-		.outputV0	(mid_wire_22_V0),
-		.outputV1	(mid_wire_22_V1)
-	);
-	reg [63:0] mid_flip_22;
-	always@(posedge clk, posedge rst) begin
-		if (rst)
-			mid_flip_22 <= 64'b0;
-		else if (clk)
-			mid_flip_22 <= {mid_wire_22_V1, mid_wire_22_V0};	// from above
-	end
-	decryptor_half_round_2 h2_tea_dec_22 (
-		.key		(key),
-		.inV0		(mid_flip_22[31: 0]),
-		.inV1		(mid_flip_22[63:32]),
-		.sum		(DELTA*11),
-		.outputV0	(wire_22_V0),
-		.outputV1	(wire_22_V1)
-	);
-/*	
 	decryptor_single_round tea_dec_22 (
 //		.clk		(clk),
 		.key(key),
@@ -1099,7 +547,7 @@ module full_sync_decryptor(
 		.outputV0(wire_22_V0),
 		.outputV1(wire_22_V1)
 	);
-*/	
+	
 	reg [63:0] flipper23;
 	always@(posedge clk, posedge rst) begin
 		if (rst)
@@ -1113,32 +561,7 @@ module full_sync_decryptor(
 	
 // Round 23:
 	wire [31:0] wire_23_V1, wire_23_V0;
-	wire [31:0] mid_wire_23_V0, mid_wire_23_V1;
 	
-	decryptor_half_round_1 h1_tea_dec_23 (
-		.key		(key),
-		.inV0		(flipper23[31: 0]),
-		.inV1		(flipper23[63:32]),
-		.sum		(DELTA*10),
-		.outputV0	(mid_wire_23_V0),
-		.outputV1	(mid_wire_23_V1)
-	);
-	reg [63:0] mid_flip_23;
-	always@(posedge clk, posedge rst) begin
-		if (rst)
-			mid_flip_23 <= 64'b0;
-		else if (clk)
-			mid_flip_23 <= {mid_wire_23_V1, mid_wire_23_V0};	// from above
-	end
-	decryptor_half_round_2 h2_tea_dec_23 (
-		.key		(key),
-		.inV0		(mid_flip_23[31: 0]),
-		.inV1		(mid_flip_23[63:32]),
-		.sum		(DELTA*10),
-		.outputV0	(wire_23_V0),
-		.outputV1	(wire_23_V1)
-	);
-/*	
 	decryptor_single_round tea_dec_23 (
 //		.clk		(clk),
 		.key(key),
@@ -1148,7 +571,7 @@ module full_sync_decryptor(
 		.outputV0(wire_23_V0),
 		.outputV1(wire_23_V1)
 	);
-*/	
+	
 	reg [63:0] flipper24;
 	always@(posedge clk, posedge rst) begin
 		if (rst)
@@ -1162,32 +585,7 @@ module full_sync_decryptor(
 	
 // Round 24:
 	wire [31:0] wire_24_V1, wire_24_V0;
-	wire [31:0] mid_wire_24_V0, mid_wire_24_V1;
 	
-	decryptor_half_round_1 h1_tea_dec_24 (
-		.key		(key),
-		.inV0		(flipper24[31: 0]),
-		.inV1		(flipper24[63:32]),
-		.sum		(DELTA*9),
-		.outputV0	(mid_wire_24_V0),
-		.outputV1	(mid_wire_24_V1)
-	);
-	reg [63:0] mid_flip_24;
-	always@(posedge clk, posedge rst) begin
-		if (rst)
-			mid_flip_24 <= 64'b0;
-		else if (clk)
-			mid_flip_24 <= {mid_wire_24_V1, mid_wire_24_V0};	// from above
-	end
-	decryptor_half_round_2 h2_tea_dec_24 (
-		.key		(key),
-		.inV0		(mid_flip_24[31: 0]),
-		.inV1		(mid_flip_24[63:32]),
-		.sum		(DELTA*9),
-		.outputV0	(wire_24_V0),
-		.outputV1	(wire_24_V1)
-	);
-/*	
 	decryptor_single_round tea_dec_24 (
 //		.clk		(clk),
 		.key(key),
@@ -1197,7 +595,7 @@ module full_sync_decryptor(
 		.outputV0(wire_24_V0),
 		.outputV1(wire_24_V1)
 	);
-*/	
+	
 	reg [63:0] flipper25;
 	always@(posedge clk, posedge rst) begin
 		if (rst)
@@ -1211,32 +609,7 @@ module full_sync_decryptor(
 	
 // Round 25:
 	wire [31:0] wire_25_V1, wire_25_V0;
-	wire [31:0] mid_wire_25_V0, mid_wire_25_V1;
 	
-	decryptor_half_round_1 h1_tea_dec_25 (
-		.key		(key),
-		.inV0		(flipper25[31: 0]),
-		.inV1		(flipper25[63:32]),
-		.sum		(DELTA*8),
-		.outputV0	(mid_wire_25_V0),
-		.outputV1	(mid_wire_25_V1)
-	);
-	reg [63:0] mid_flip_25;
-	always@(posedge clk, posedge rst) begin
-		if (rst)
-			mid_flip_25 <= 64'b0;
-		else if (clk)
-			mid_flip_25 <= {mid_wire_25_V1, mid_wire_25_V0};	// from above
-	end
-	decryptor_half_round_2 h2_tea_dec_25 (
-		.key		(key),
-		.inV0		(mid_flip_25[31: 0]),
-		.inV1		(mid_flip_25[63:32]),
-		.sum		(DELTA*8),
-		.outputV0	(wire_25_V0),
-		.outputV1	(wire_25_V1)
-	);
-/*	
 	decryptor_single_round tea_dec_25 (
 //		.clk		(clk),
 		.key(key),
@@ -1246,7 +619,7 @@ module full_sync_decryptor(
 		.outputV0(wire_25_V0),
 		.outputV1(wire_25_V1)
 	);
-*/	
+	
 	reg [63:0] flipper26;
 	always@(posedge clk, posedge rst) begin
 		if (rst)
@@ -1260,32 +633,7 @@ module full_sync_decryptor(
 	
 // Round 26:
 	wire [31:0] wire_26_V1, wire_26_V0;
-	wire [31:0] mid_wire_26_V0, mid_wire_26_V1;
 	
-	decryptor_half_round_1 h1_tea_dec_26 (
-		.key		(key),
-		.inV0		(flipper26[31: 0]),
-		.inV1		(flipper26[63:32]),
-		.sum		(DELTA*7),
-		.outputV0	(mid_wire_26_V0),
-		.outputV1	(mid_wire_26_V1)
-	);
-	reg [63:0] mid_flip_26;
-	always@(posedge clk, posedge rst) begin
-		if (rst)
-			mid_flip_26 <= 64'b0;
-		else if (clk)
-			mid_flip_26 <= {mid_wire_26_V1, mid_wire_26_V0};	// from above
-	end
-	decryptor_half_round_2 h2_tea_dec_26 (
-		.key		(key),
-		.inV0		(mid_flip_26[31: 0]),
-		.inV1		(mid_flip_26[63:32]),
-		.sum		(DELTA*7),
-		.outputV0	(wire_26_V0),
-		.outputV1	(wire_26_V1)
-	);
-/*	
 	decryptor_single_round tea_dec_26 (
 //		.clk		(clk),
 		.key(key),
@@ -1295,7 +643,7 @@ module full_sync_decryptor(
 		.outputV0(wire_26_V0),
 		.outputV1(wire_26_V1)
 	);
-*/	
+	
 	reg [63:0] flipper27;
 	always@(posedge clk, posedge rst) begin
 		if (rst)
@@ -1309,32 +657,7 @@ module full_sync_decryptor(
 	
 // Round 27:
 	wire [31:0] wire_27_V1, wire_27_V0;
-	wire [31:0] mid_wire_27_V0, mid_wire_27_V1;
 	
-	decryptor_half_round_1 h1_tea_dec_27 (
-		.key		(key),
-		.inV0		(flipper27[31: 0]),
-		.inV1		(flipper27[63:32]),
-		.sum		(DELTA*6),
-		.outputV0	(mid_wire_27_V0),
-		.outputV1	(mid_wire_27_V1)
-	);
-	reg [63:0] mid_flip_27;
-	always@(posedge clk, posedge rst) begin
-		if (rst)
-			mid_flip_27 <= 64'b0;
-		else if (clk)
-			mid_flip_27 <= {mid_wire_27_V1, mid_wire_27_V0};	// from above
-	end
-	decryptor_half_round_2 h2_tea_dec_27 (
-		.key		(key),
-		.inV0		(mid_flip_27[31: 0]),
-		.inV1		(mid_flip_27[63:32]),
-		.sum		(DELTA*6),
-		.outputV0	(wire_27_V0),
-		.outputV1	(wire_27_V1)
-	);
-/*	
 	decryptor_single_round tea_dec_27 (
 //		.clk		(clk),
 		.key(key),
@@ -1344,7 +667,7 @@ module full_sync_decryptor(
 		.outputV0(wire_27_V0),
 		.outputV1(wire_27_V1)
 	);
-*/	
+	
 	reg [63:0] flipper28;
 	always@(posedge clk, posedge rst) begin
 		if (rst)
@@ -1358,32 +681,7 @@ module full_sync_decryptor(
 	
 // Round 28:
 	wire [31:0] wire_28_V1, wire_28_V0;
-	wire [31:0] mid_wire_28_V0, mid_wire_28_V1;
 	
-	decryptor_half_round_1 h1_tea_dec_28 (
-		.key		(key),
-		.inV0		(flipper28[31: 0]),
-		.inV1		(flipper28[63:32]),
-		.sum		(DELTA*5),
-		.outputV0	(mid_wire_28_V0),
-		.outputV1	(mid_wire_28_V1)
-	);
-	reg [63:0] mid_flip_28;
-	always@(posedge clk, posedge rst) begin
-		if (rst)
-			mid_flip_28 <= 64'b0;
-		else if (clk)
-			mid_flip_28 <= {mid_wire_28_V1, mid_wire_28_V0};	// from above
-	end
-	decryptor_half_round_2 h2_tea_dec_28 (
-		.key		(key),
-		.inV0		(mid_flip_28[31: 0]),
-		.inV1		(mid_flip_28[63:32]),
-		.sum		(DELTA*5),
-		.outputV0	(wire_28_V0),
-		.outputV1	(wire_28_V1)
-	);
-/*	
 	decryptor_single_round tea_dec_28 (
 //		.clk		(clk),
 		.key(key),
@@ -1393,7 +691,7 @@ module full_sync_decryptor(
 		.outputV0(wire_28_V0),
 		.outputV1(wire_28_V1)
 	);
-*/	
+	
 	reg [63:0] flipper29;
 	always@(posedge clk, posedge rst) begin
 		if (rst)
@@ -1407,32 +705,7 @@ module full_sync_decryptor(
 	
 // Round 29:
 	wire [31:0] wire_29_V1, wire_29_V0;
-	wire [31:0] mid_wire_29_V0, mid_wire_29_V1;
 	
-	decryptor_half_round_1 h1_tea_dec_29 (
-		.key		(key),
-		.inV0		(flipper29[31: 0]),
-		.inV1		(flipper29[63:32]),
-		.sum		(DELTA*4),
-		.outputV0	(mid_wire_29_V0),
-		.outputV1	(mid_wire_29_V1)
-	);
-	reg [63:0] mid_flip_29;
-	always@(posedge clk, posedge rst) begin
-		if (rst)
-			mid_flip_29 <= 64'b0;
-		else if (clk)
-			mid_flip_29 <= {mid_wire_29_V1, mid_wire_29_V0};	// from above
-	end
-	decryptor_half_round_2 h2_tea_dec_29 (
-		.key		(key),
-		.inV0		(mid_flip_29[31: 0]),
-		.inV1		(mid_flip_29[63:32]),
-		.sum		(DELTA*4),
-		.outputV0	(wire_29_V0),
-		.outputV1	(wire_29_V1)
-	);
-/*	
 	decryptor_single_round tea_dec_29 (
 //		.clk		(clk),
 		.key(key),
@@ -1442,7 +715,7 @@ module full_sync_decryptor(
 		.outputV0(wire_29_V0),
 		.outputV1(wire_29_V1)
 	);
-*/	
+	
 	reg [63:0] flipper30;
 	always@(posedge clk, posedge rst) begin
 		if (rst)
@@ -1456,32 +729,7 @@ module full_sync_decryptor(
 	
 // Round 30:
 	wire [31:0] wire_30_V1, wire_30_V0;
-	wire [31:0] mid_wire_30_V0, mid_wire_30_V1;
 	
-	decryptor_half_round_1 h1_tea_dec_30 (
-		.key		(key),
-		.inV0		(flipper30[31: 0]),
-		.inV1		(flipper30[63:32]),
-		.sum		(DELTA*3),
-		.outputV0	(mid_wire_30_V0),
-		.outputV1	(mid_wire_30_V1)
-	);
-	reg [63:0] mid_flip_30;
-	always@(posedge clk, posedge rst) begin
-		if (rst)
-			mid_flip_30 <= 64'b0;
-		else if (clk)
-			mid_flip_30 <= {mid_wire_30_V1, mid_wire_30_V0};	// from above
-	end
-	decryptor_half_round_2 h2_tea_dec_30 (
-		.key		(key),
-		.inV0		(mid_flip_30[31: 0]),
-		.inV1		(mid_flip_30[63:32]),
-		.sum		(DELTA*3),
-		.outputV0	(wire_30_V0),
-		.outputV1	(wire_30_V1)
-	);
-/*	
 	decryptor_single_round tea_dec_30 (
 //		.clk		(clk),
 		.key(key),
@@ -1491,7 +739,7 @@ module full_sync_decryptor(
 		.outputV0(wire_30_V0),
 		.outputV1(wire_30_V1)
 	);
-*/	
+	
 	reg [63:0] flipper31;
 	always@(posedge clk, posedge rst) begin
 		if (rst)
@@ -1505,32 +753,7 @@ module full_sync_decryptor(
 	
 // Round 31:
 	wire [31:0] wire_31_V1, wire_31_V0;
-	wire [31:0] mid_wire_31_V0, mid_wire_31_V1;
 	
-	decryptor_half_round_1 h1_tea_dec_31 (
-		.key		(key),
-		.inV0		(flipper31[31: 0]),
-		.inV1		(flipper31[63:32]),
-		.sum		(DELTA*2),
-		.outputV0	(mid_wire_31_V0),
-		.outputV1	(mid_wire_31_V1)
-	);
-	reg [63:0] mid_flip_31;
-	always@(posedge clk, posedge rst) begin
-		if (rst)
-			mid_flip_31 <= 64'b0;
-		else if (clk)
-			mid_flip_31 <= {mid_wire_31_V1, mid_wire_31_V0};	// from above
-	end
-	decryptor_half_round_2 h2_tea_dec_31 (
-		.key		(key),
-		.inV0		(mid_flip_31[31: 0]),
-		.inV1		(mid_flip_31[63:32]),
-		.sum		(DELTA*2),
-		.outputV0	(wire_31_V0),
-		.outputV1	(wire_31_V1)
-	);
-/*	
 	decryptor_single_round tea_dec_31 (
 //		.clk		(clk),
 		.key(key),
@@ -1540,7 +763,7 @@ module full_sync_decryptor(
 		.outputV0(wire_31_V0),
 		.outputV1(wire_31_V1)
 	);
-*/	
+	
 	reg [63:0] flipper32;
 	always@(posedge clk, posedge rst) begin
 		if (rst)
@@ -1559,32 +782,7 @@ module full_sync_decryptor(
  * This is the processed 64 bit block.
  */
 	wire [31:0] wire_32_V1, wire_32_V0;
-	wire [31:0] mid_wire_32_V0, mid_wire_32_V1;
-	
-	decryptor_half_round_1 h1_tea_dec_32 (
-		.key		(key),
-		.inV0		(flipper32[31: 0]),
-		.inV1		(flipper32[63:32]),
-		.sum		(DELTA*1),
-		.outputV0	(mid_wire_32_V0),
-		.outputV1	(mid_wire_32_V1)
-	);
-	reg [63:0] mid_flip_32;
-	always@(posedge clk, posedge rst) begin
-		if (rst)
-			mid_flip_32 <= 64'b0;
-		else if (clk)
-			mid_flip_32 <= {mid_wire_32_V1, mid_wire_32_V0};	// from above
-	end
-	decryptor_half_round_2 h2_tea_dec_32 (
-		.key		(key),
-		.inV0		(mid_flip_32[31: 0]),
-		.inV1		(mid_flip_32[63:32]),
-		.sum		(DELTA*1),
-		.outputV0	(wire_32_V0),
-		.outputV1	(wire_32_V1)
-	);
-/*
+
 	decryptor_single_round tea_dec_32 (
 //		.clk		(clk),
 		.key(key),
@@ -1594,7 +792,7 @@ module full_sync_decryptor(
 		.outputV0(wire_32_V0),
 		.outputV1(wire_32_V1)
 	);
-*/	
+	
 	reg [63:0] flipperLast;
 	always@(posedge clk, posedge rst) begin
 		if (rst)
